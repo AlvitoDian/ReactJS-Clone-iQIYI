@@ -17,8 +17,6 @@ const Navbar = () => {
         setDropdownVisible(false);
     };
 
-    console.log(isSidebarOpen);
-
     return (
         <nav className="bg-navbar xxl:py-2 xl:py-2 w-full">
             <div className="flex justify-between items-center ">

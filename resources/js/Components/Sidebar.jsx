@@ -86,7 +86,7 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
                 </a>
                 {/* Dropdown  Menu */}
 
-                <div className={isDropdownVisible ? "block " : "hidden"}>
+                <div className={isDropdownVisible ? "block" : "hidden"}>
                     <a
                         href="/"
                         className="pl-6 pt-6 text-gray-navbar hover:text-green-hover text-white lg:hidden flex justify-between"
@@ -97,20 +97,10 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
                         href="/"
                         className="pl-6 pt-6 text-gray-navbar hover:text-green-hover text-white lg:hidden flex justify-between"
                     >
-                        <span>Tentang kami</span>
-                    </a>
-                    <a
-                        href="/"
-                        className="pl-6 pt-6 text-gray-navbar hover:text-green-hover text-white lg:hidden flex justify-between"
-                    >
-                        <span>Tentang kami</span>
+                        <span>Sponsor</span>
                     </a>
                 </div>
                 {/* Dropdown  Menu */}
-                <a className="pl-6 pt-6 text-gray-navbar hover:text-green-hover text-white lg:hidden flex justify-between">
-                    <span>Kerja sama</span>
-                    <i className={`fas fa-caret-down text-lg pr-8`}></i>
-                </a>
             </div>
         </>
     );
