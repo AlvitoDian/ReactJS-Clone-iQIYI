@@ -1,7 +1,13 @@
 import React, { useState } from "react";
+import Sidebar from "./Sidebar";
 
 const Navbar = () => {
     const [isDropdownVisible, setDropdownVisible] = useState(false);
+    const [isSidebarOpen, setSidebarOpen] = useState(true);
+
+    const toggleSidebar = () => {
+        setSidebarOpen(!isSidebarOpen);
+    };
 
     const handleMouseEnter = () => {
         setDropdownVisible(true);
@@ -11,18 +17,20 @@ const Navbar = () => {
         setDropdownVisible(false);
     };
 
+    console.log(isSidebarOpen);
+
     return (
         <nav className="bg-navbar xxl:py-2 xl:py-2 w-full">
-            {/* Left Item */}
             <div className="flex justify-between items-center ">
+                {/* Left Item */}
                 <div className="flex items-center">
                     {/* burger button */}
-                    <a
-                        href="/"
+                    <div
                         className="text-gray-navbar text-white xxl:hidden xl:hidden lg:hidden pl-2 flex items-center justify-center"
+                        onClick={toggleSidebar}
                     >
-                        <i className="fas fa-bars text-lg"></i>
-                    </a>
+                        <i className="fas fa-bars text-lg cuirsor-pointer"></i>
+                    </div>
                     {/* burger button end */}
                     <a
                         href="/"
@@ -169,13 +177,13 @@ const Navbar = () => {
                         <span className="text-xs">Saya</span>
                     </a>
 
-                    <button class="bg-transparent hover:border-[#1cc749] hover:text-[#1cc749] text-white border border-white font-bold py-1 px-4 rounded mr-3 lg:hidden md:hidden sm:hidden">
+                    <button className="bg-transparent hover:border-[#1cc749] hover:text-[#1cc749] text-white border border-white font-bold py-1 px-4 rounded mr-3 lg:hidden md:hidden sm:hidden">
                         <i className="fas fa-download text-lg "></i>
                         <span> APP</span>
                     </button>
 
                     {/* button app mobile */}
-                    <button class="bg-[#1CC749] hover:bg-[#2cd458] text-white font-sm text-sm px-2 rounded mx-3 flex items-center lg:hidden xl:hidden xxl:hidden">
+                    <button className="bg-[#1CC749] hover:bg-[#2cd458] text-white font-sm text-sm px-2 rounded mx-3 flex items-center lg:hidden xl:hidden xxl:hidden">
                         <i className="fas fa-download text-md py-[7px]"></i>
                         <span> APP</span>
                     </button>
@@ -201,17 +209,59 @@ const Navbar = () => {
                         <i className="far fa-user text-lg"></i>
                     </a>
 
-                    <button class="lg:pr-[20px] pr-[30px] bg-transparent hover:border-[#1cc749] hover:text-[#1cc749] text-white font-bold rounded hidden lg:inline-block">
+                    <button className="lg:pr-[20px] pr-[30px] bg-transparent hover:border-[#1cc749] hover:text-[#1cc749] text-white font-bold rounded hidden lg:inline-block">
                         <i className="fas fa-download text-lg "></i>
                     </button>
                     {/* lg view end */}
 
-                    <button class="bg-buttonvip hover:bg-buttonviphover text-dark font-bold py-1 px-4 mr-[50px] rounded sm:hidden md:hidden">
+                    <button className="bg-buttonvip hover:bg-buttonviphover text-dark font-bold py-1 px-4 mr-[50px] rounded sm:hidden md:hidden">
                         <i className="fas fa-crown text-dark text-lg "></i>
                         <span> VIP</span>
                     </button>
                 </div>
             </div>
+            {/* Mobile view */}
+            <div className="flex justify-between items-center xxl:hidden xl:hidden lg:hidden overflow-y-auto">
+                {/* Left Item */}
+                <div className="flex items-center py-[8px] ">
+                    <a
+                        href="/"
+                        className="text-white font-bold pr-[28px] hover:text-green-hover "
+                    >
+                        Rekomendasi
+                    </a>
+                    <a
+                        href="/"
+                        className="text-gray-navbar pr-[28px] font-medium hover:text-green-hover "
+                    >
+                        Drama
+                    </a>
+                    <a
+                        href="/"
+                        className="text-gray-navbar pr-[28px] font-medium hover:text-green-hover "
+                    >
+                        K-Drama
+                    </a>
+                    <a
+                        href="/"
+                        className="text-gray-navbar pr-[28px] font-medium hover:text-green-hover "
+                    >
+                        Film
+                    </a>
+                    <a
+                        href="/"
+                        className="text-gray-navbar pr-[28px] font-medium hover:text-green-hover "
+                    >
+                        Anime
+                    </a>
+                </div>
+            </div>
+
+            {/* Sidebar */}
+            <Sidebar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
+            {/* Sidebar */}
+
+            {/* Mobile view */}
         </nav>
     );
 };
