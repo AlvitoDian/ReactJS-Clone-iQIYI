@@ -44,15 +44,13 @@ const HeroSection = () => {
     console.log(currentSlide);
 
     return (
-        <div className="relative h-screen lg:h-96 md:h-96 sm:h-96 overflow-hidden transition-height duration-500 ease-in-out">
+        <div className="relative overflow-hidden transition-height duration-500 ease-in-out">
             <InfoHero />
-            <div
-                className="flex transition-transform duration-500 ease-in-out"
-                style={{ transform: `translateX(${translateX}%)` }}
-            >
-                {images.map((image, index) => (
-                    <img key={index} src={image} alt={`Slide ${index + 1}`} />
-                ))}
+            <div className="flex transition-transform duration-500 ease-in-out object-fit">
+                <img
+                    src={images[currentSlide]}
+                    className="h-full xxl:h-screen w-screen"
+                />
             </div>
             <button
                 onClick={prevSlide}
