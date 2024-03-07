@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Sidebar from "./Sidebar";
 
 const Navbar = () => {
     const [isDropdownVisible, setDropdownVisible] = useState(false);
-    const [isSidebarOpen, setSidebarOpen] = useState(true);
+    const [isSidebarOpen, setSidebarOpen] = useState(false);
+    const [isNavbarTransparent, setIsNavbarTransparent] = useState(true);
 
     const toggleSidebar = () => {
         setSidebarOpen(!isSidebarOpen);
@@ -17,8 +18,26 @@ const Navbar = () => {
         setDropdownVisible(false);
     };
 
+    useEffect(() => {
+        const handleScroll = () => {
+            const scrollPosition = window.scrollY;
+            const shouldNavbarBeTransparent = scrollPosition < 100;
+            setIsNavbarTransparent(shouldNavbarBeTransparent);
+        };
+
+        window.addEventListener("scroll", handleScroll);
+
+        return () => {
+            window.removeEventListener("scroll", handleScroll);
+        };
+    }, []);
+
     return (
-        <nav className="bg-navbar xxl:py-2 xl:py-2 w-full">
+        <nav
+            className={`fixed w-full transition-all duration-1000 ${
+                isNavbarTransparent ? "bg-transparent" : "bg-navbar"
+            } xxl:py-2 xl:py-2 z-50`}
+        >
             <div className="flex justify-between items-center ">
                 {/* Left Item */}
                 <div className="flex items-center">

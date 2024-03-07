@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import Navbar from "@/Components/Navbar";
+import HeroSection from "@/Components/HeroSection";
 
 const Home = () => {
     return (
         <>
             <Navbar />
-            <h1>Bjier</h1>
+            <HeroSection />
         </>
     );
 };
