@@ -54,12 +54,12 @@ const HeroSection = () => {
             ></div>
             <InfoHero />
             <div
-                className="flex transition-opacity duration-500 ease-in-out object-fit"
+                className="flex transition-opacity duration-500 ease-in-out object-fit xl:h-screen xxl:h-screen"
                 style={{ opacity }}
             >
                 <img
                     src={images[currentSlide]}
-                    className="h-full xl:h-screen xxl:h-screen w-screen "
+                    className="h-full  w-screen object-cover"
                 />
             </div>
             <button

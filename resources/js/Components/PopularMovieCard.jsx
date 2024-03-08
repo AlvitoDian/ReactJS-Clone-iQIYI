@@ -47,6 +47,7 @@ const PopularMovieCard = () => {
                     slidesToScroll: 3,
                     infinite: true,
                     dots: true,
+                    swipe: false,
                 },
             },
             {
@@ -55,6 +56,7 @@ const PopularMovieCard = () => {
                     slidesToShow: 3,
                     slidesToScroll: 3,
                     initialSlide: 3,
+                    swipe: false,
                 },
             },
             {
@@ -64,6 +66,7 @@ const PopularMovieCard = () => {
                     slidesToScroll: 3,
                     initialSlide: 3,
                     arrows: false,
+                    swipe: false,
                 },
             },
         ],
@@ -202,7 +205,7 @@ const PopularMovieCard = () => {
                     {/* Header */}
 
                     {/* Cards Loop */}
-                    <div className="slider-container w-[95vw] sm:w-[100vw] xxl:-ml-2 xl:-ml-2">
+                    <div className="slider-container w-[95vw] sm:w-[98vw] md:w-[98vw] -ml-2 xxl:-ml-2 xl:-ml-2">
                         <Slider
                             ref={sliderRef}
                             {...settings}
@@ -236,7 +239,7 @@ const PopularMovieCard = () => {
                         </Slider>
                     </div>
                     <button
-                        className="absolute right-0 top-1/2 transform -translate-y-1/2 text-slate-400 hover:text-white py-1 -mr-2 rounded-full cursor-pointer z-30"
+                        className="absolute right-0 top-1/2 transform -translate-y-1/2 text-slate-400 hover:text-white py-1 -mr-2 rounded-full cursor-pointer z-30 sm:text-sm md:text-md sm:mr-[2px] md:mr-[2px]"
                         onClick={handleNextArrowClick}
                     >
                         <i className="fas fa-angle-right text-4xl "></i>
