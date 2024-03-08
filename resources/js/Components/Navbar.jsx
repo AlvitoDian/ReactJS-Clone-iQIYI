@@ -67,7 +67,7 @@ const Navbar = () => {
                     </a>
                     <a
                         href="/"
-                        className="text-gray-navbar pr-[37px] font-medium hover:text-green-hover hidden xxl:inline-block md:hidden sm:hidden"
+                        className="text-gray-navbar pr-[37px] font-medium hover:text-green-hover hidden xl:inline-block xxl:inline-block md:hidden sm:hidden"
                     >
                         Drama
                     </a>
@@ -238,9 +238,9 @@ const Navbar = () => {
                 </div>
             </div>
             {/* Mobile view */}
-            <div className="flex justify-between items-center xxl:hidden xl:hidden lg:hidden overflow-y-auto">
+            <div className="flex justify-between items-center text-sm xxl:hidden xl:hidden lg:hidden overflow-y-auto">
                 {/* Left Item */}
-                <div className="flex items-center py-[8px] ">
+                <div className="flex items-center py-[8px] px-[8px]">
                     <a
                         href="/"
                         className="text-white font-bold pr-[28px] hover:text-green-hover "
