@@ -65,8 +65,8 @@ const InfoHero = () => {
             <div className="content-center pt-4 w-[400px]">
                 <h1 className="text-sm font-bold mb-4 inline rounded mr-1">
                     <TextTruncate
-                        line={3} // Number of lines to show before truncating
-                        element="h1" // The element type for truncation
+                        line={3}
+                        element="h1"
                         truncateText="..."
                         text='"Lorem ipsum dolor, sit amet consectetur adipisicing elit. Atque sit ullam maxime saepe labore? Nobis temporibus quae nihil illo ab! Lorem ipsum dolor, sit amet consectetur adipisicing elit. Atque sit ullam maxime saepe labore? Nobis temporibus quae nihil illo ab! Lorem ipsum dolor, sit amet consectetur adipisicing elit. Atque sit ullam maxime saepe labore? Nobis temporibus quae nihil illo ab! Lorem ipsum dolor, sit amet consectetur adipisicing elit. Atque sit ullam maxime saepe labore? Nobis temporibus quae nihil illo ab!"'
                     />
