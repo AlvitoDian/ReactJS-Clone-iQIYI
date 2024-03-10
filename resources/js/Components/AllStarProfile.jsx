@@ -144,7 +144,7 @@ const AllStarProfile = () => {
                 <div className="flex flex-col ">
                     {/* Header */}
                     <div className="z-[100]">
-                        <h1 className="text-white mt-9 font-bold text-3xl py-2 md:text-sm sm:text-sm -mb-10">
+                        <h1 className="text-white mt-9 font-bold text-3xl py-2 md:text-sm sm:text-sm ">
                             All Star
                         </h1>
                     </div>
@@ -162,14 +162,14 @@ const AllStarProfile = () => {
                                 <a
                                     key={star.id}
                                     href="/"
-                                    className="flex flex-col mr-3 w-[210px] md:w-[140px] sm:w-[111px] h-auto transition-all duration-300 xxl:mb-2 xl:mb-2 relative py-10 z-10 hover:z-50"
+                                    className="flex flex-col mr-3 w-[210px] md:w-[140px] sm:w-[111px] h-auto transition-all duration-300 xxl:mb-2 xl:mb-2 relative py-5 z-10 hover:z-50"
                                 >
-                                    <div className="transform scale-100 hover:scale-110 transition-transform duration-300 text-white hover:text-[#00C936] flex flex-col justify-center items-center">
-                                        <div className="flex items-end z-10">
+                                    <div className="transform scale-100 hover:scale-110 transition-transform duration-300 text-white hover:text-[#00C936] flex py-2 flex-col justify-center items-center">
+                                        <div className="flex items-end z-10 h-40 w-40 sm:w-28 sm:h-28">
                                             <img
                                                 src={star.image}
                                                 alt={star.name}
-                                                className="md:mr-4 mb-3 rounded-full h-40 w-40 object-cover hover:border-2 hover:border-[#00C936] "
+                                                className="md:mr-4 mb-3 rounded-full object-cover hover:border-2 hover:border-[#00C936] "
                                             />
                                         </div>
                                         <span className="font-bold text-lg md:text-base sm:text-xs opacity-[0.8]">
