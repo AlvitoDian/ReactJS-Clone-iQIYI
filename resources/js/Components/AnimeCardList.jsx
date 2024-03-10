@@ -3,7 +3,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-const RecomMovieCard = () => {
+const AnimeCardList = () => {
     const [currentSlide, setCurrentSlide] = useState(0);
     const [prevArrowVisible, setPrevArrowVisible] = useState(false);
     const [isModalVisible, setModalVisible] = useState(false);
@@ -235,13 +235,13 @@ const RecomMovieCard = () => {
         },
     ];
     return (
-        <div className="container-xl bg-[#111319] h-auto xxl:px-12 xl:px-12 lg:px-7 md:px-3 sm:px-3 ">
+        <div className=" container-xl bg-[#111319] h-auto xxl:px-12 xl:px-12 lg:px-7 md:px-3 sm:px-3 ">
             <div className="relative z-20 transition-all duration-300 ">
                 <div className="flex flex-col ">
                     {/* Header */}
                     <div className="z-[100]">
-                        <h1 className="text-white mt-9 font-bold text-3xl py-2 md:text-sm sm:text-sm -mb-10">
-                            Rekomendasi Untuk Anda
+                        <h1 className="text-white font-bold text-3xl py-2 md:text-sm sm:text-sm -mb-10">
+                            Anime Jepang
                         </h1>
                     </div>
                     {/* Header */}
@@ -369,4 +369,4 @@ const RecomMovieCard = () => {
     );
 };
 
-export default RecomMovieCard;
+export default AnimeCardList;

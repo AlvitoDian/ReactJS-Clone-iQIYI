@@ -6,69 +6,69 @@ const InfoHero = () => {
         <div className="flex flex-col xxl:px-14 xl:px-14 lg:px-14 sm:px-3 md:px-3 xxl:pb-[10.65rem] xl:pb-[10.65rem] text-white z-20 absolute bottom-0">
             {/* Badge */}
             <div className="content-center xxl:text-sm xl:text-sm lg:text-sm md:text-[10px] sm:text-[10px]">
-                <h1 className=" font-bold mb-4 bg-[#00C936] inline p-[5px] rounded-s-[3px] ">
+                <span className=" font-bold mb-4 bg-[#00C936] inline p-[5px] rounded-s-[3px] ">
                     TOP 10
-                </h1>
-                <h1 className=" font-bold mb-4 bg-[#6D6553] inline p-[5px] rounded-e-[3px]">
+                </span>
+                <span className=" font-bold mb-4 bg-[#6D6553] inline p-[5px] rounded-e-[3px]">
                     Populer
-                </h1>
-                <h1 className="ml-4 font-bold mb-4 bg-[#E87021] inline p-[5px] rounded">
+                </span>
+                <span className="ml-4 font-bold mb-4 bg-[#E87021] inline p-[5px] rounded">
                     Eksklusif
-                </h1>
+                </span>
             </div>
             {/* Badge */}
             {/* Rating */}
             <div className="content-center pt-4 xxl:text-lg xl:text-lg md:text-xs sm:text-xs">
-                <h1 className="font-bold mb-4 inline text-[#00C936] pr-2">
+                <span className="font-bold mb-4 inline text-[#00C936] pr-2">
                     &#9733; 9,6
-                </h1>
+                </span>
                 <div className="border-l-[2px] border-[#808080] pr-[3px] -py-6 inline"></div>
 
-                <h1 className="font-bold mb-4 inline pl-3 pr-3">2020</h1>
-
-                <div className="border-l-[2px] border-[#808080] pr-[3px] -py-6 inline"></div>
-
-                <h1 className="font-bold mb-4 inline pl-3 pr-3">13+</h1>
+                <span className="font-bold mb-4 inline pl-3 pr-3">2020</span>
 
                 <div className="border-l-[2px] border-[#808080] pr-[3px] -py-6 inline"></div>
 
-                <h1 className="font-bold mb-4 inline pl-3 pr-3">
+                <span className="font-bold mb-4 inline pl-3 pr-3">13+</span>
+
+                <div className="border-l-[2px] border-[#808080] pr-[3px] -py-6 inline"></div>
+
+                <span className="font-bold mb-4 inline pl-3 pr-3">
                     Full 20 Episode
-                </h1>
+                </span>
             </div>
             {/* Rating */}
             {/* Genre */}
             <div className="content-center pt-4 sm:hidden md:hidden">
-                <h1 className="text-xs font-bold mb-4 bg-black bg-opacity-30 inline p-[5px] rounded mr-1">
+                <span className="text-xs font-bold mb-4 bg-black bg-opacity-30 inline p-[5px] rounded mr-1">
                     Aksi
-                </h1>
-                <h1 className="text-xs font-bold mb-4 bg-black bg-opacity-30 inline p-[5px] rounded mr-1">
+                </span>
+                <span className="text-xs font-bold mb-4 bg-black bg-opacity-30 inline p-[5px] rounded mr-1">
                     Komedi
-                </h1>
-                <h1 className="text-xs font-bold mb-4 bg-black bg-opacity-30 inline p-[5px] rounded mr-1">
+                </span>
+                <span className="text-xs font-bold mb-4 bg-black bg-opacity-30 inline p-[5px] rounded mr-1">
                     Sci-fi
-                </h1>
-                <h1 className="text-xs font-bold mb-4 bg-black bg-opacity-30 inline p-[5px] rounded mr-1">
+                </span>
+                <span className="text-xs font-bold mb-4 bg-black bg-opacity-30 inline p-[5px] rounded mr-1">
                     Sejarah
-                </h1>
-                <h1 className="text-xs font-bold mb-4 bg-black bg-opacity-30 inline p-[5px] rounded mr-1">
+                </span>
+                <span className="text-xs font-bold mb-4 bg-black bg-opacity-30 inline p-[5px] rounded mr-1">
                     Drama
-                </h1>
-                <h1 className="text-xs font-bold mb-4 bg-black bg-opacity-30 inline p-[5px] rounded mr-1">
+                </span>
+                <span className="text-xs font-bold mb-4 bg-black bg-opacity-30 inline p-[5px] rounded mr-1">
                     Romance
-                </h1>
+                </span>
             </div>
             {/* Genre */}
             {/* Synopsis */}
             <div className="content-center pt-4 w-[400px] sm:hidden md:hidden">
-                <h1 className="text-sm font-bold mb-4 inline rounded mr-1">
+                <span className="text-sm font-bold mb-4 inline rounded mr-1">
                     <TextTruncate
                         line={3}
-                        element="h1"
+                        element="span"
                         truncateText="..."
                         text='"Lorem ipsum dolor, sit amet consectetur adipisicing elit. Atque sit ullam maxime saepe labore? Nobis temporibus quae nihil illo ab! Lorem ipsum dolor, sit amet consectetur adipisicing elit. Atque sit ullam maxime saepe labore? Nobis temporibus quae nihil illo ab! Lorem ipsum dolor, sit amet consectetur adipisicing elit. Atque sit ullam maxime saepe labore? Nobis temporibus quae nihil illo ab! Lorem ipsum dolor, sit amet consectetur adipisicing elit. Atque sit ullam maxime saepe labore? Nobis temporibus quae nihil illo ab!"'
                     />
-                </h1>
+                </span>
             </div>
             {/* Synopsis */}
             {/* Button Play and History */}

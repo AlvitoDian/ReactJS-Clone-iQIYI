@@ -108,7 +108,7 @@ const ComingSoonMovieCard = () => {
         {
             id: 1,
             title: "Last Paradise",
-            image: "images/film1.png",
+            image: "images/banner3.jpg",
             episodes: 20,
             synopsis:
                 "A breathtaking journey to the Last Paradise awaits as characters embark on an epic adventure.",
@@ -116,7 +116,7 @@ const ComingSoonMovieCard = () => {
         {
             id: 2,
             title: "Last Paradise",
-            image: "images/film1.png",
+            image: "images/film2.png",
             episodes: 20,
             synopsis:
                 "Discover the enchanting world of the Last Paradise in this thrilling and captivating series.",
@@ -124,7 +124,7 @@ const ComingSoonMovieCard = () => {
         {
             id: 3,
             title: "Last Paradise",
-            image: "images/film1.png",
+            image: "images/film3.png",
             episodes: 20,
             synopsis:
                 "Experience the magic and wonders of the Last Paradise as heroes face challenges and mysteries.",
@@ -132,7 +132,7 @@ const ComingSoonMovieCard = () => {
         {
             id: 4,
             title: "Bjie Bet",
-            image: "images/film1.png",
+            image: "images/film4.png",
             episodes: 20,
             synopsis:
                 "Join the epic journey of Bjie Bet as they navigate through an exciting and action-packed adventure.",
@@ -140,7 +140,7 @@ const ComingSoonMovieCard = () => {
         {
             id: 5,
             title: "Last Paradise",
-            image: "images/film1.png",
+            image: "images/film5.png",
             episodes: 20,
             synopsis:
                 "Embark on a thrilling odyssey to the Last Paradise filled with drama, romance, and excitement.",
@@ -234,7 +234,7 @@ const ComingSoonMovieCard = () => {
                 "Explore the mysteries and wonders of the Last Paradise in this spellbinding and epic journey.",
         },
     ];
-    console.log(isModalVisible);
+
     return (
         <div className="container-xl bg-[#111319] h-auto xxl:px-12 xl:px-12 lg:px-7 md:px-3 sm:px-3 ">
             <div className="relative z-20 transition-all duration-300 ">
@@ -256,21 +256,44 @@ const ComingSoonMovieCard = () => {
                             afterChange={handleAfterChange}
                         >
                             {movies.map((movie) => (
-                                <div className="flex flex-col mr-3 w-[210px] md:w-[140px] sm:w-[111px] h-auto transition-all duration-300 xxl:mb-2 xl:mb-2 relative py-10 z-10 hover:z-50">
+                                <div
+                                    className="flex flex-col mr-3 w-[210px] md:w-[140px] sm:w-[111px] h-auto transition-all duration-300 xxl:mb-2 xl:mb-2 relative py-10 z-10 hover:z-50"
+                                    key={movie.id}
+                                >
                                     {/* Timeline Soon */}
                                     <div className="mb-10">
                                         <div className="border-t-[3px] border-[#2D2F34] mb-2 flex justify-center items-center content-center -mx-20 relative">
-                                            <div className="text-white text-xs absolute w-3 h-3 mb-[2px] rounded-full bg-[#828387] sm:hidden md:hidden"></div>
+                                            <div
+                                                className={`absolute w-3 h-3 mb-[2px] rounded-full sm:hidden md:hidden ${
+                                                    isModalVisible === movie.id
+                                                        ? "bg-[#1CC749]"
+                                                        : "bg-[#828387] "
+                                                }`}
+                                            ></div>
+                                            {/* Triangle Shape */}
+                                            <div
+                                                className={`absolute w-3 h-3 mb-[2px] rounded-tl-[5px] rounded-tr-[5px] rounded-bl-[5px] transform rotate-45 sm:hidden md:hidden ${
+                                                    isModalVisible === movie.id
+                                                        ? "bg-[#1CC749] inline"
+                                                        : "bg-[#828387] hidden"
+                                                }`}
+                                            ></div>
+                                            {/* Triangle Shape */}
                                         </div>
                                         <div className="flex justify-center">
-                                            <p className="text-[#BCBDBE] text-[12px] font-medium">
+                                            <p
+                                                className={`text-[12px] font-medium ${
+                                                    isModalVisible === movie.id
+                                                        ? "text-[#1CC749]"
+                                                        : "text-[#BCBDBE] "
+                                                }`}
+                                            >
                                                 Nantikan Segera
                                             </p>
                                         </div>
                                     </div>
                                     {/* Timeline Soon */}
                                     <a
-                                        key={movie.id}
                                         href="/"
                                         onMouseEnter={() => {
                                             handleMouseEnter(movie.id);
@@ -278,10 +301,15 @@ const ComingSoonMovieCard = () => {
                                         onMouseLeave={handleMouseLeave}
                                     >
                                         <div className="flex items-end z-10">
+                                            {/* <img
+                                                src={movie.image}
+                                                alt={movie.title}
+                                                className="md:mr-4 rounded-md w-full object-cover h-[300px]"
+                                            /> */}
                                             <img
                                                 src={movie.image}
                                                 alt={movie.title}
-                                                className="md:mr-4 rounded-md w-full"
+                                                className="md:mr-4 rounded-md w-full object-cover xxl:h-[300px] xl:h-[300px] lg:h-[300px] md:h-[300px] sm:h-[170px]"
                                             />
                                             <span className="absolute text-gray-200 font-bold p-2 text-md md:text-base sm:text-xs">
                                                 Full {movie.episodes} episode
@@ -292,7 +320,7 @@ const ComingSoonMovieCard = () => {
                                         </span>
 
                                         {isModalVisible === movie.id && (
-                                            <div className="flex content-center items-center transition-transform duration-300 transform scale-100 hover:scale-125 absolute top-[90px] shadow">
+                                            <div className="flex content-center items-center transition-transform duration-300 transform scale-100 hover:scale-125 absolute top-[110px] shadow">
                                                 <div className="max-w-xs bg-[#1A1C22] rounded h-[300px]">
                                                     <div className="relative flex items-end justify-end">
                                                         <img

@@ -8,6 +8,8 @@ import RecomMovieCard from "../Components/RecomMovieCard";
 import AllPopularMovieCard from "../Components/AllPopularMovieCard";
 import ComingSoonMovieCard from "../Components/ComingSoonMovieCard";
 import AllStarProfile from "../Components/AllStarProfile";
+import Footer from "../Components/Footer";
+import AnimeCardList from "../Components/AnimeCardList";
 
 const Home = () => {
     return (
@@ -21,6 +23,8 @@ const Home = () => {
             <AllPopularMovieCard />
             <ComingSoonMovieCard />
             <AllStarProfile />
+            <AnimeCardList />
+            <Footer />
         </>
     );
 };

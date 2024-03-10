@@ -144,7 +144,7 @@ const AllStarProfile = () => {
                 <div className="flex flex-col ">
                     {/* Header */}
                     <div className="z-[100]">
-                        <h1 className="text-white mt-9 font-bold text-3xl py-2 md:text-sm sm:text-sm ">
+                        <h1 className="text-white font-bold text-3xl py-2 md:text-sm sm:text-sm ">
                             All Star
                         </h1>
                     </div>

@@ -234,7 +234,6 @@ const LimitedMovieCard = () => {
                 "Explore the mysteries and wonders of the Last Paradise in this spellbinding and epic journey.",
         },
     ];
-    console.log(isModalVisible);
     return (
         <div className="container-xl bg-[#111319] h-auto xxl:px-12 xl:px-12 lg:px-7 md:px-3 sm:px-3 ">
             <div className="relative z-20 transition-all duration-300 ">
@@ -269,7 +268,7 @@ const LimitedMovieCard = () => {
                                         <img
                                             src={movie.image}
                                             alt={movie.title}
-                                            className="md:mr-4 rounded-md w-full"
+                                            className="md:mr-4 rounded-md w-full object-cover xxl:h-[300px] xl:h-[300px] lg:h-[300px] md:h-[300px] sm:h-[170px]"
                                         />
                                         <span className="absolute text-gray-200 font-bold p-2 text-md md:text-base sm:text-xs">
                                             Full {movie.episodes} episode
