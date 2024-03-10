@@ -247,7 +247,7 @@ const PopularMovieCard = () => {
                     </div>
                     {/* Header */}
                     {/* Cards Loop */}
-                    <div className="slider-container xxl:w-[95vw] xl:2-[95vw] sm:w-[96vw] md:w-[96vw] -ml-2 xxl:-ml-2 xl:-ml-2 z-20 hover:z-[200]">
+                    <div className="slider-container xxl:w-[94vw] xl:2-[95vw] sm:w-[96vw] md:w-[96vw] -ml-2 xxl:-ml-2 xl:-ml-2 z-20 hover:z-[200]">
                         <Slider
                             ref={sliderRef}
                             {...settings}

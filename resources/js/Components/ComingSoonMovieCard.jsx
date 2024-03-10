@@ -3,7 +3,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-const LimitedMovieCard = () => {
+const ComingSoonMovieCard = () => {
     const [currentSlide, setCurrentSlide] = useState(0);
     const [prevArrowVisible, setPrevArrowVisible] = useState(false);
     const [isModalVisible, setModalVisible] = useState(false);
@@ -242,12 +242,12 @@ const LimitedMovieCard = () => {
                     {/* Header */}
                     <div className="z-[100]">
                         <h1 className="text-white mt-9 font-bold text-3xl py-2 md:text-sm sm:text-sm -mb-10">
-                            Limited Time Free
+                            Segera Tayang
                         </h1>
                     </div>
                     {/* Header */}
                     {/* Cards Loop */}
-                    <div className="slider-container xxl:w-[94vw] xl:2-[95vw] sm:w-[96vw] md:w-[96vw] -ml-2 xxl:-ml-2 xl:-ml-2 z-20 hover:z-[200]">
+                    <div className="slider-container mt-5 xxl:w-[94vw] xl:2-[95vw] sm:w-[96vw] md:w-[96vw] -ml-2 xxl:-ml-2 xl:-ml-2 z-20 hover:z-[200]">
                         <Slider
                             ref={sliderRef}
                             {...settings}
@@ -256,94 +256,121 @@ const LimitedMovieCard = () => {
                             afterChange={handleAfterChange}
                         >
                             {movies.map((movie) => (
-                                <a
-                                    key={movie.id}
-                                    href="/"
-                                    className="flex flex-col mr-3 w-[210px] md:w-[140px] sm:w-[111px] h-auto transition-all duration-300 xxl:mb-2 xl:mb-2 relative py-10 z-10 hover:z-50"
-                                    onMouseEnter={() => {
-                                        handleMouseEnter(movie.id);
-                                    }}
-                                    onMouseLeave={handleMouseLeave}
-                                >
-                                    <div className="flex items-end z-10">
-                                        <img
-                                            src={movie.image}
-                                            alt={movie.title}
-                                            className="md:mr-4 rounded-md w-full"
-                                        />
-                                        <span className="absolute text-gray-200 font-bold p-2 text-md md:text-base sm:text-xs">
-                                            Full {movie.episodes} episode
-                                        </span>
+                                <div className="flex flex-col mr-3 w-[210px] md:w-[140px] sm:w-[111px] h-auto transition-all duration-300 xxl:mb-2 xl:mb-2 relative py-10 z-10 hover:z-50">
+                                    {/* Timeline Soon */}
+                                    <div className="mb-10">
+                                        <div className="border-t-[3px] border-[#2D2F34] mb-2 flex justify-center items-center content-center -mx-20 relative">
+                                            <div className="text-white text-xs absolute w-3 h-3 mb-[2px] rounded-full bg-[#828387] sm:hidden md:hidden"></div>
+                                        </div>
+                                        <div className="flex justify-center">
+                                            <p className="text-[#BCBDBE] text-[12px] font-medium">
+                                                Nantikan Segera
+                                            </p>
+                                        </div>
                                     </div>
-                                    <span className="ml-2 mt-1 text-white font-bold text-lg md:text-base sm:text-xs">
-                                        {movie.title}
-                                    </span>
-                                    {isModalVisible === movie.id && (
-                                        <div className="flex content-center items-center transition-transform duration-300 transform scale-100 hover:scale-125 absolute top-10 shadow">
-                                            <div className="max-w-xs bg-[#1A1C22] rounded h-[300px]">
-                                                <div className="relative flex items-end justify-end">
-                                                    <img
-                                                        className="rounded-t h-[130px] w-full object-cover"
-                                                        src="images/film2.png"
-                                                        alt=""
-                                                    />
-                                                    {/* Tombol Play dan Bookmark */}
-                                                    <div className="absolute flex p-1">
-                                                        <a
-                                                            href="/"
-                                                            className="bg-[#00C936] rounded-full w-[30px] h-[30px] flex justify-center items-center hover:bg-[#10e047] text-white mr-1"
-                                                        >
-                                                            <i className="fas fa-play text-xs"></i>
-                                                        </a>
-                                                        <a
-                                                            href="/"
-                                                            className="bg-[#D1D3D6] rounded-full w-[30px] h-[30px] flex justify-center items-center hover:bg-[#DEE0E3]"
-                                                        >
-                                                            <i className="fas fa-bookmark text-xs fa-inverse"></i>
-                                                        </a>
+                                    {/* Timeline Soon */}
+                                    <a
+                                        key={movie.id}
+                                        href="/"
+                                        onMouseEnter={() => {
+                                            handleMouseEnter(movie.id);
+                                        }}
+                                        onMouseLeave={handleMouseLeave}
+                                    >
+                                        <div className="flex items-end z-10">
+                                            <img
+                                                src={movie.image}
+                                                alt={movie.title}
+                                                className="md:mr-4 rounded-md w-full"
+                                            />
+                                            <span className="absolute text-gray-200 font-bold p-2 text-md md:text-base sm:text-xs">
+                                                Full {movie.episodes} episode
+                                            </span>
+                                        </div>
+                                        <span className="ml-2 mt-1 text-white font-bold text-lg md:text-base sm:text-xs">
+                                            {movie.title}
+                                        </span>
+
+                                        {isModalVisible === movie.id && (
+                                            <div className="flex content-center items-center transition-transform duration-300 transform scale-100 hover:scale-125 absolute top-[90px] shadow">
+                                                <div className="max-w-xs bg-[#1A1C22] rounded h-[300px]">
+                                                    <div className="relative flex items-end justify-end">
+                                                        <img
+                                                            className="rounded-t h-[130px] w-full object-cover"
+                                                            src="images/film2.png"
+                                                            alt=""
+                                                        />
+                                                        {/* Tombol Play dan Bookmark */}
+                                                        <div className="absolute flex p-1">
+                                                            <a
+                                                                href="/"
+                                                                className="bg-[#00C936] rounded-full w-[30px] h-[30px] flex justify-center items-center hover:bg-[#10e047] text-white mr-1"
+                                                            >
+                                                                <i className="fas fa-play text-xs"></i>
+                                                            </a>
+                                                            <a
+                                                                href="/"
+                                                                className="bg-[#D1D3D6] rounded-full w-[30px] h-[30px] flex justify-center items-center hover:bg-[#DEE0E3]"
+                                                            >
+                                                                <i className="fas fa-bookmark text-xs fa-inverse"></i>
+                                                            </a>
+                                                        </div>
+                                                        {/* Tombol Play dan Bookmark */}
                                                     </div>
-                                                    {/* Tombol Play dan Bookmark */}
-                                                </div>
 
-                                                <div className="p-2">
-                                                    <div>
-                                                        <h5 className="text-md font-bold text-white">
-                                                            {movie.title}
-                                                        </h5>
+                                                    <div className="p-2">
+                                                        <div>
+                                                            <h5 className="text-md font-bold text-white">
+                                                                {movie.title}
+                                                            </h5>
+                                                        </div>
+
+                                                        <div className="content-center text-white text-xs font-md pb-1">
+                                                            <h1 className="mb-4 inline text-[#00C936] pr-1 font-bold">
+                                                                &#9733; 9,6
+                                                            </h1>
+                                                            <div className="border-l-[2px] border-[#808080] pr-[1px] -py-6 inline"></div>
+
+                                                            <h1 className="mb-4 inline pl-1 pr-1">
+                                                                15+
+                                                            </h1>
+
+                                                            <div className="border-l-[2px] border-[#808080] pr-[1px] -py-6 inline"></div>
+
+                                                            <h1 className="mb-4 inline pl-1 pr-1">
+                                                                2024
+                                                            </h1>
+                                                        </div>
+                                                        <div className="content-center text-white">
+                                                            <h1 className="text-[11px] font-medium mb-4 bg-white bg-opacity-10 inline p-[2px] rounded-[2px] mr-1">
+                                                                Aksi
+                                                            </h1>
+                                                            <h1 className="text-[11px] font-medium mb-4 bg-white bg-opacity-10 inline p-[2px] rounded-[2px] mr-1">
+                                                                Komedi
+                                                            </h1>
+                                                        </div>
+                                                        <p className="mb-3 mt-3 font-small text-white text-[12px]">
+                                                            {movie.synopsis}
+                                                        </p>
                                                     </div>
-
-                                                    <div className="content-center text-white text-xs font-md pb-1">
-                                                        <h1 className="mb-4 inline text-[#00C936] pr-1 font-bold">
-                                                            &#9733; 9,6
-                                                        </h1>
-                                                        <div className="border-l-[2px] border-[#808080] pr-[1px] -py-6 inline"></div>
-
-                                                        <h1 className="mb-4 inline pl-1 pr-1">
-                                                            15+
-                                                        </h1>
-
-                                                        <div className="border-l-[2px] border-[#808080] pr-[1px] -py-6 inline"></div>
-
-                                                        <h1 className="mb-4 inline pl-1 pr-1">
-                                                            2024
-                                                        </h1>
-                                                    </div>
-                                                    <div className="content-center text-white">
-                                                        <h1 className="text-[11px] font-medium mb-4 bg-white bg-opacity-10 inline p-[2px] rounded-[2px] mr-1">
-                                                            Aksi
-                                                        </h1>
-                                                        <h1 className="text-[11px] font-medium mb-4 bg-white bg-opacity-10 inline p-[2px] rounded-[2px] mr-1">
-                                                            Komedi
-                                                        </h1>
-                                                    </div>
-                                                    <p className="mb-3 mt-3 font-small text-white text-[12px]">
-                                                        {movie.synopsis}
-                                                    </p>
                                                 </div>
                                             </div>
+                                        )}
+                                    </a>
+                                    {/* Reserve Button  */}
+                                    <div className="mt-6">
+                                        <div className="relative flex px-12 sm:px-2 md:px-2 text-[#1CC749]">
+                                            <a
+                                                href="/"
+                                                className="bg-[#2D2F34] hover:bg-[#44474f] px-[17px] py-[7px] rounded-[4px] font-medium text-[14px] flex items-center"
+                                            >
+                                                <i className="far fa-clock text-lg mr-2"></i>
+                                                <p>Reserve</p>
+                                            </a>
                                         </div>
-                                    )}
-                                </a>
+                                    </div>
+                                    {/* Reserve Button  */}
+                                </div>
                             ))}
                         </Slider>
                     </div>
@@ -370,4 +397,4 @@ const LimitedMovieCard = () => {
     );
 };
 
-export default LimitedMovieCard;
+export default ComingSoonMovieCard;

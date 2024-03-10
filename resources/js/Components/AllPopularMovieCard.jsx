@@ -3,7 +3,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-const LimitedMovieCard = () => {
+const AllPopularMovieCard = () => {
     const [currentSlide, setCurrentSlide] = useState(0);
     const [prevArrowVisible, setPrevArrowVisible] = useState(false);
     const [isModalVisible, setModalVisible] = useState(false);
@@ -242,7 +242,7 @@ const LimitedMovieCard = () => {
                     {/* Header */}
                     <div className="z-[100]">
                         <h1 className="text-white mt-9 font-bold text-3xl py-2 md:text-sm sm:text-sm -mb-10">
-                            Limited Time Free
+                            Popular
                         </h1>
                     </div>
                     {/* Header */}
@@ -370,4 +370,4 @@ const LimitedMovieCard = () => {
     );
 };
 
-export default LimitedMovieCard;
+export default AllPopularMovieCard;
