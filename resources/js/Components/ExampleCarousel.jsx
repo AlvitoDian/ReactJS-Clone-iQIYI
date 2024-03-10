@@ -22,7 +22,7 @@ function SliderExample() {
     ];
 
     return (
-        <div className="slider-container w-[1000px]">
+        <div className="slider-container w-">
             <Slider {...settings}>
                 {data.map((slide) => (
                     <div key={slide.id} className="bg-white">

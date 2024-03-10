@@ -43,7 +43,7 @@ const HeroSection = () => {
     }, [currentSlide]);
 
     return (
-        <div className="relative overflow-hidden transition-height duration-500 ease-in-out">
+        <div className="relative overflow-hidden transition-height duration-500 ease-in-out sm:pt-[95px]">
             <div
                 className="absolute inset-0"
                 style={{
@@ -62,18 +62,20 @@ const HeroSection = () => {
                     className="h-full  w-screen object-cover"
                 />
             </div>
-            <button
-                onClick={prevSlide}
-                className="absolute left-0 top-1/2 transform -translate-y-1/2 text-slate-400 hover:text-white px-3 py-1 rounded-full cursor-pointer z-30"
-            >
-                <i className="fas fa-angle-left text-4xl "></i>
-            </button>
-            <button
-                onClick={nextSlide}
-                className="absolute right-0 top-1/2 transform -translate-y-1/2 text-slate-400 hover:text-white px-3 py-1 rounded-full cursor-pointer z-30"
-            >
-                <i className="fas fa-angle-right text-4xl "></i>
-            </button>
+            <div className="z-50">
+                <button
+                    onClick={prevSlide}
+                    className="absolute left-0 top-1/2 transform -translate-y-1/2 text-slate-400 hover:text-white px-3 py-1 rounded-full cursor-pointer z-30 sm:pt-[90px]"
+                >
+                    <i className="fas fa-angle-left text-4xl "></i>
+                </button>
+                <button
+                    onClick={nextSlide}
+                    className="absolute right-0 top-1/2 transform -translate-y-1/2 text-slate-400 hover:text-white px-3 py-1 rounded-full cursor-pointer z-30 sm:pt-[90px]"
+                >
+                    <i className="fas fa-angle-right text-4xl "></i>
+                </button>
+            </div>
         </div>
     );
 };
