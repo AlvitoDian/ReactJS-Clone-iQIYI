@@ -72,7 +72,7 @@ const InfoHero = () => {
             </div>
             {/* Synopsis */}
             {/* Button Play and History */}
-            <div className="flex sm:hidden md:hidden">
+            <div className="flex sm:hidden md:hidden mt-4">
                 <a
                     href="/"
                     className="bg-[#00C936] rounded-full w-[60px] h-[60px] flex justify-center items-center hover:bg-[#10e047]"

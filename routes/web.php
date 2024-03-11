@@ -17,3 +17,7 @@ use Inertia\Inertia;
 Route::get('/', function () {
     return Inertia::render('Home');
 });
+
+Route::get('/movie/1', function () {
+    return Inertia::render('SingleMovie');
+});
