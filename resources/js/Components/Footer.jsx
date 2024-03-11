@@ -136,7 +136,7 @@ const Footer = () => {
                                                 className="bg-[#000000] py-[7px] text-[#DDDDDD] rounded-[4px] font-normal text-[14px] flex items-center justify-center px-2"
                                             >
                                                 <img
-                                                    src="images/rokutv.png"
+                                                    src="/images/rokutv.png"
                                                     className="w-[40px]"
                                                     alt=""
                                                 />
@@ -146,7 +146,7 @@ const Footer = () => {
                                                 className="bg-[#000000] py-[7px] text-[#DDDDDD] rounded-[4px] font-normal text-[14px] flex items-center justify-center px-2"
                                             >
                                                 <img
-                                                    src="images/firetv.png"
+                                                    src="/images/firetv.png"
                                                     className="w-[40px]"
                                                     alt=""
                                                 />
@@ -156,7 +156,7 @@ const Footer = () => {
                                                 className="bg-[#000000] py-[7px] text-[#DDDDDD] rounded-[4px] font-normal text-[14px] flex items-center justify-center px-2"
                                             >
                                                 <img
-                                                    src="images/googleplay.png"
+                                                    src="/images/googleplay.png"
                                                     className="w-[90px]"
                                                     alt=""
                                                 />
@@ -166,7 +166,7 @@ const Footer = () => {
                                                 className="bg-[#000000] py-[7px] text-[#DDDDDD] rounded-[4px] font-normal text-[14px] flex items-center justify-center px-2"
                                             >
                                                 <img
-                                                    src="images/appstore.png"
+                                                    src="/images/appstore.png"
                                                     className="w-[90px]"
                                                     alt=""
                                                 />

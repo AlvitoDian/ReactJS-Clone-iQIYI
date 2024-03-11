@@ -3,27 +3,35 @@ import MovieInfo from "./MovieInfo";
 
 function BannerMovie() {
     return (
-        <div className="container-xl xxl:pl-12 xl:pl-12 lg:pl-10 md:pl-5 sm:pl-5">
+        <div className="container-xl xxl:px-12 xl:px-12 lg:px-10 md:px-5 sm:px-5">
             <div className="grid grid-cols-2 sm:grid-cols-1">
                 {/* Banner Movie */}
-                <div className="order-last sm:order-first relative">
+                <div className="order-last sm:order-first relative xxl:-mx-12 xl:-mx-12 lg:-mx-10 md:-mx-5 sm:-mx-5 sm:pt-[90px]">
                     <div
-                        className="absolute inset-0"
+                        className="absolute inset-0 sm:hidden"
                         style={{
                             backgroundImage: `url('../images/overlay_single.png')`,
                             backgroundSize: "100% 110%",
                             zIndex: 1,
                         }}
                     ></div>
+                    <div
+                        className="absolute inset-0 xxl:hidden xl:hidden lg:hidden"
+                        style={{
+                            backgroundImage: `url('../images/overlay_single_mobile.png')`,
+                            backgroundSize: "100% 110%",
+                            zIndex: 1,
+                        }}
+                    ></div>
                     <img
-                        src="../images/banner2.jpg"
+                        src="/images/banner2.jpg"
                         alt=""
                         className="object-cover w-full h-full"
                     />
                 </div>
                 {/* Banner Movie */}
                 {/* info Movie */}
-                <div className="mt-32 flex flex-col gap-3 pr-5">
+                <div className="mt-32 sm:mt-4 flex flex-col gap-3 pr-5">
                     {/* Judul */}
                     <h1 className="text-[40px] text-white font-extrabold">
                         BORUTO NEXT GENERATION
@@ -93,7 +101,7 @@ function BannerMovie() {
                     <div>
                         <a
                             href="/"
-                            className="bg-[#F2BF83] px-[17px] py-[7px] text-black rounded-[4px] mr-3 hover:bg-[#3b3e47] font-bold text-[14px] flex items-center justify-center w-[400px] md:w-[100%] sm:w-[100%]"
+                            className="bg-[#F2BF83] px-[17px] py-[7px] text-black rounded-[4px] mr-3 hover:bg-[#f0cca3] font-bold text-[14px] flex items-center justify-center w-[400px] md:w-[100%] sm:w-[100%]"
                         >
                             <i className="fas fa-crown text-[14px] mr-2"></i>
                             VIP Standard hanya Rp19,000 untuk bulan pertama
@@ -119,7 +127,7 @@ function BannerMovie() {
                     <div className="flex gap-[2px]">
                         <a
                             href="/"
-                            className="bg-[#1CC749] px-[17px] py-[7px] text-white rounded-[4px] mr-3 hover:bg-[#3b3e47] font-bold text-[14px] flex items-center justify-center w-[100px] md:w-[100%] sm:w-[100%]"
+                            className="bg-[#1CC749] px-[17px] py-[7px] text-white rounded-[4px] mr-3 hover:bg-[#35de62] font-bold text-[14px] flex items-center justify-center w-[100px] md:w-[100%] sm:w-[100%]"
                         >
                             <i className="fas fa-play text-[14px] mr-2"></i>
                             Putar
