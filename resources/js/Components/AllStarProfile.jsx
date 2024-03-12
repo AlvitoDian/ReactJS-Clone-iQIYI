@@ -161,7 +161,7 @@ const AllStarProfile = () => {
                                 <a
                                     key={star.id}
                                     href="/"
-                                    className="flex flex-col mr-3 w-[210px] md:w-[140px] sm:w-[111px] h-auto transition-all duration-300 xxl:mb-2 xl:mb-2 relative py-5 z-10 hover:z-50"
+                                    className="flex flex-col mr-3 w-[210px] md:w-[140px] sm:w-[111px] h-auto transition-all duration-300 xxl:mb-2 xl:mb-2 relative py-10 z-10 hover:z-50"
                                 >
                                     <div className="transform scale-100 hover:scale-110 transition-transform duration-300 text-white hover:text-[#00C936] flex py-2 flex-col justify-center items-center">
                                         <div className="flex items-end z-10 h-40 w-40 sm:w-28 sm:h-28">

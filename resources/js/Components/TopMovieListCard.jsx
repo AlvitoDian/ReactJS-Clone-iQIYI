@@ -3,11 +3,19 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-const TopMovieListCard = ({ category }) => {
+const TopMovieListCard = ({ category, popularMovies }) => {
     const [currentSlide, setCurrentSlide] = useState(0);
     const [prevArrowVisible, setPrevArrowVisible] = useState(false);
     const [isModalVisible, setModalVisible] = useState(false);
     const sliderRef = useRef(null);
+
+    const [moviesPopular, setMoviesPopular] = useState(popularMovies);
+
+    console.log(moviesPopular);
+
+    function truncateWords(str, words) {
+        return str.split(" ").slice(0, words).join(" ");
+    }
 
     const handleMouseEnter = (movieId) => {
         setModalVisible(movieId);
@@ -254,9 +262,9 @@ const TopMovieListCard = ({ category }) => {
                             beforeChange={handleBeforeChange}
                             afterChange={handleAfterChange}
                         >
-                            {movies.map((movie) => (
+                            {moviesPopular.map((movie, index) => (
                                 <a
-                                    key={movie.id}
+                                    key={index}
                                     href="/"
                                     className="flex flex-col mr-3 w-[210px] md:w-[140px] sm:w-[111px] h-auto transition-all duration-300 xxl:mb-2 xl:mb-2 relative py-10 z-10 hover:z-50"
                                     onMouseEnter={() => {
@@ -265,25 +273,40 @@ const TopMovieListCard = ({ category }) => {
                                     onMouseLeave={handleMouseLeave}
                                 >
                                     <div className="flex items-end">
-                                        <img
-                                            src={movie.image}
-                                            alt={movie.title}
-                                            className="md:mr-4 rounded-md w-full object-cover xxl:h-[300px] xl:h-[300px] lg:h-[300px] md:h-[300px] sm:h-[170px]"
-                                        />
-                                        <span className="absolute text-gray-200 font-bold p-2 text-md md:text-base sm:text-xs">
-                                            Full {movie.episodes} episode
-                                        </span>
+                                        <div className="relative">
+                                            <div
+                                                className="absolute inset-0"
+                                                style={{
+                                                    backgroundImage: `url('/images/overlay_single_mobile.png')`,
+                                                    backgroundSize: "100% 100%",
+                                                    opacity: 0.7,
+                                                    zIndex: 1,
+                                                }}
+                                            ></div>
+                                            <img
+                                                src={movie.poster_url}
+                                                alt={movie.title}
+                                                className="md:mr-4 rounded-md w-full object-cover xxl:h-[300px] xl:h-[300px] lg:h-[300px] md:h-[300px] sm:h-[170px]"
+                                            />
+                                        </div>
+                                        <div className="absolute text-gray-200 font-bold p-2 text-md md:text-base sm:text-xs z-[50] flex items-center justify-center">
+                                            {/* Full {movie.episodes} episode */}
+                                            <div>&#9733;</div>
+                                            <span className="ml-[3px]">
+                                                {movie.vote_average.toFixed(1)}
+                                            </span>
+                                        </div>
                                     </div>
                                     <span className="ml-2 mt-1 text-white font-bold text-lg md:text-base sm:text-xs">
                                         {movie.title}
                                     </span>
                                     {isModalVisible === movie.id && (
-                                        <div className="flex content-center items-center transition-transform duration-300 transform scale-100 hover:scale-125 absolute top-10 shadow">
+                                        <div className="flex content-center items-center transition-transform duration-300 transform scale-100 hover:scale-125 absolute top-10 shadow z-[600]">
                                             <div className="max-w-xs bg-[#1A1C22] rounded h-[300px]">
                                                 <div className="relative flex items-end justify-end">
                                                     <img
                                                         className="rounded-t h-[130px] w-full object-cover"
-                                                        src="images/film2.png"
+                                                        src={movie.backdrop_url}
                                                         alt=""
                                                     />
                                                     {/* Tombol Play dan Bookmark */}
@@ -313,7 +336,10 @@ const TopMovieListCard = ({ category }) => {
 
                                                     <div className="content-center text-white text-xs font-md pb-1">
                                                         <h1 className="mb-4 inline text-[#00C936] pr-1 font-bold">
-                                                            &#9733; 9,6
+                                                            &#9733;
+                                                            {movie.vote_average.toFixed(
+                                                                1
+                                                            )}
                                                         </h1>
                                                         <div className="border-l-[2px] border-[#808080] pr-[1px] -py-6 inline"></div>
 
@@ -324,7 +350,9 @@ const TopMovieListCard = ({ category }) => {
                                                         <div className="border-l-[2px] border-[#808080] pr-[1px] -py-6 inline"></div>
 
                                                         <h1 className="mb-4 inline pl-1 pr-1">
-                                                            2024
+                                                            {new Date(
+                                                                movie.release_date
+                                                            ).getFullYear()}
                                                         </h1>
                                                     </div>
                                                     <div className="content-center text-white">
@@ -336,7 +364,11 @@ const TopMovieListCard = ({ category }) => {
                                                         </h1>
                                                     </div>
                                                     <p className="mb-3 mt-3 font-small text-white text-[12px]">
-                                                        {movie.synopsis}
+                                                        {truncateWords(
+                                                            movie.overview,
+                                                            15
+                                                        )}
+                                                        ...
                                                     </p>
                                                 </div>
                                             </div>

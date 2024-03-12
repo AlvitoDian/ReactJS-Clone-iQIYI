@@ -8,12 +8,15 @@ import ComingSoonMovieCard from "../Components/ComingSoonMovieCard";
 import AllStarProfile from "../Components/AllStarProfile";
 import Footer from "../Components/Footer";
 
-const Home = () => {
+const Home = ({ movies }) => {
     return (
         <>
             <Navbar />
             <HeroSection />
-            <TopMovieListCard category={"Rekomendasi Populer"} />
+            <TopMovieListCard
+                category={"Rekomendasi Populer"}
+                popularMovies={movies}
+            />
             <BadgeCategory />
             <MovieListCard category={"Limited Time Free"} />
             <MovieListCard category={"Rekomendasi Untuk Anda"} />
