@@ -3,7 +3,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-const LimitedMovieCard = () => {
+const TopMovieListCard = ({ category }) => {
     const [currentSlide, setCurrentSlide] = useState(0);
     const [prevArrowVisible, setPrevArrowVisible] = useState(false);
     const [isModalVisible, setModalVisible] = useState(false);
@@ -56,7 +56,7 @@ const LimitedMovieCard = () => {
                     slidesToScroll: 5,
                     infinite: true,
                     dots: true,
-                    swipe: false,
+                    /* swipe: false, */
                     dots: false,
                 },
             },
@@ -67,7 +67,7 @@ const LimitedMovieCard = () => {
                     slidesToScroll: 3,
                     infinite: true,
                     dots: true,
-                    swipe: false,
+                    /* swipe: false, */
                     dots: false,
                 },
             },
@@ -77,7 +77,7 @@ const LimitedMovieCard = () => {
                     slidesToShow: 3,
                     slidesToScroll: 3,
                     initialSlide: 3,
-                    swipe: false,
+                    /* swipe: false, */
                     dots: false,
                 },
             },
@@ -88,7 +88,7 @@ const LimitedMovieCard = () => {
                     slidesToScroll: 3,
                     initialSlide: 3,
                     arrows: false,
-                    swipe: false,
+                    /* swipe: false, */
                     dots: false,
                 },
             },
@@ -235,22 +235,22 @@ const LimitedMovieCard = () => {
         },
     ];
     return (
-        <div className="container-xl bg-[#111319] h-auto xxl:px-12 xl:px-12 lg:px-7 md:px-3 sm:px-3 ">
-            <div className="relative z-20 transition-all duration-300 ">
+        <div className="container-xl bg-[#111319] h-auto  ">
+            <div className="relative z-20 xxl:-mt-28 xl:-mt-28 transition-all duration-300 xxl:px-12 xl:px-12 lg:px-7 md:px-3 sm:px-5">
                 <div className="flex flex-col ">
                     {/* Header */}
-                    <div className="z-[100]">
-                        <h1 className="text-white mt-9 font-bold text-3xl py-2 md:text-sm sm:text-sm -mb-10">
-                            Limited Time Free
+                    <div className="z-[50]">
+                        <h1 className="text-white font-bold text-3xl py-2 md:text-sm sm:text-sm -mb-10">
+                            {category}
                         </h1>
                     </div>
                     {/* Header */}
                     {/* Cards Loop */}
-                    <div className="slider-container xxl:w-[94vw] xl:2-[95vw] sm:w-[96vw] md:w-[96vw] -ml-2 xxl:-ml-2 xl:-ml-2 z-20 hover:z-[200]">
+                    {/*  <div className="slider-container xxl:w-[94vw] xl:w-[93vw] sm:w-[96vw] md:w-[96vw] -ml-2 xxl:-ml-2 xl:-ml-2 z-20 hover:z-[200]"> */}
+                    <div className="slider-container w-full hover:z-[200]">
                         <Slider
                             ref={sliderRef}
                             {...settings}
-                            className="mr-5 "
                             beforeChange={handleBeforeChange}
                             afterChange={handleAfterChange}
                         >
@@ -264,7 +264,7 @@ const LimitedMovieCard = () => {
                                     }}
                                     onMouseLeave={handleMouseLeave}
                                 >
-                                    <div className="flex items-end z-10">
+                                    <div className="flex items-end">
                                         <img
                                             src={movie.image}
                                             alt={movie.title}
@@ -349,18 +349,22 @@ const LimitedMovieCard = () => {
                     {/* Cards Loop */}
                     {/* Button Next & Prev */}
                     <button
-                        className="absolute right-0 top-1/2 transform -translate-y-1/2 text-slate-400 hover:text-white -mr-2 rounded-full cursor-pointer z-30 sm:text-xs md:text-md sm:mr-[2px] md:mr-[2px]"
+                        className="absolute right-0 top-1/2 transform -translate-y-1/2 text-slate-400 hover:text-white cursor-pointer z-30 sm:text-xs md:text-md xxl:mr-[20px] xl:mr-[20px] lg:mr-[4px] md:mr-[5px] sm:mr-[5px]"
                         onClick={handleNextArrowClick}
                     >
-                        <i className="fas fa-angle-right text-4xl sm:text-[20px]"></i>
+                        {/* <button
+                        className="absolute right-0 top-1/2 transform -translate-y-1/2 text-slate-400 hover:text-white -mr-2 rounded-full cursor-pointer z-30 sm:text-xs md:text-md sm:mr-[2px] md:mr-[2px]"
+                        onClick={handleNextArrowClick}
+                    > */}
+                        <i className="fas fa-angle-right text-4xl md:text-[20px] sm:text-[20px]"></i>
                     </button>
                     <button
                         onClick={handlePrevArrowClick}
-                        className={`absolute left-0 top-1/2 transform -translate-y-1/2 text-slate-400 hover:text-white -ml-8 rounded-full cursor-pointer z-30 ${
+                        className={`absolute left-0 top-1/2 transform -translate-y-1/2 text-slate-400 hover:text-white rounded-full cursor-pointer z-30 xxl:ml-[20px] xl:ml-[20px] lg:ml-[4px] md:ml-[5px] sm:ml-[5px] ${
                             prevArrowVisible ? "visible" : "invisible"
                         }`}
                     >
-                        <i className="fas fa-angle-left text-4xl sm:text-[20px]"></i>
+                        <i className="fas fa-angle-left text-4xl md:text-[20px] sm:text-[20px]"></i>
                     </button>
                     {/* Button Next & Prev */}
                 </div>
@@ -369,4 +373,4 @@ const LimitedMovieCard = () => {
     );
 };
 
-export default LimitedMovieCard;
+export default TopMovieListCard;

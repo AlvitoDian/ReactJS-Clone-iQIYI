@@ -236,8 +236,8 @@ const ComingSoonMovieCard = () => {
     ];
 
     return (
-        <div className="container-xl bg-[#111319] h-auto xxl:px-12 xl:px-12 lg:px-7 md:px-3 sm:px-3 ">
-            <div className="relative z-20 transition-all duration-300 ">
+        <div className="container-xl bg-[#111319] h-auto  ">
+            <div className="relative z-20 transition-all duration-300 xxl:px-12 xl:px-12 lg:px-7 md:px-3 sm:px-5">
                 <div className="flex flex-col ">
                     {/* Header */}
                     <div className="z-[100]">
@@ -247,11 +247,10 @@ const ComingSoonMovieCard = () => {
                     </div>
                     {/* Header */}
                     {/* Cards Loop */}
-                    <div className="slider-container mt-5 xxl:w-[94vw] xl:2-[95vw] sm:w-[96vw] md:w-[96vw] -ml-2 xxl:-ml-2 xl:-ml-2 z-20 hover:z-[200]">
+                    <div className="slider-container w-full hover:z-[200]">
                         <Slider
                             ref={sliderRef}
                             {...settings}
-                            className="mr-5 "
                             beforeChange={handleBeforeChange}
                             afterChange={handleAfterChange}
                         >
@@ -405,18 +404,22 @@ const ComingSoonMovieCard = () => {
                     {/* Cards Loop */}
                     {/* Button Next & Prev */}
                     <button
-                        className="absolute right-0 top-1/2 transform -translate-y-1/2 text-slate-400 hover:text-white -mr-2 rounded-full cursor-pointer z-30 sm:text-xs md:text-md sm:mr-[2px] md:mr-[2px]"
+                        className="absolute right-0 top-1/2 transform -translate-y-1/2 text-slate-400 hover:text-white cursor-pointer z-30 sm:text-xs md:text-md xxl:mr-[20px] xl:mr-[20px] lg:mr-[4px] md:mr-[5px] sm:mr-[5px]"
                         onClick={handleNextArrowClick}
                     >
-                        <i className="fas fa-angle-right text-4xl sm:text-[20px]"></i>
+                        {/* <button
+                        className="absolute right-0 top-1/2 transform -translate-y-1/2 text-slate-400 hover:text-white -mr-2 rounded-full cursor-pointer z-30 sm:text-xs md:text-md sm:mr-[2px] md:mr-[2px]"
+                        onClick={handleNextArrowClick}
+                    > */}
+                        <i className="fas fa-angle-right text-4xl md:text-[20px] sm:text-[20px]"></i>
                     </button>
                     <button
                         onClick={handlePrevArrowClick}
-                        className={`absolute left-0 top-1/2 transform -translate-y-1/2 text-slate-400 hover:text-white -ml-8 rounded-full cursor-pointer z-30 ${
+                        className={`absolute left-0 top-1/2 transform -translate-y-1/2 text-slate-400 hover:text-white rounded-full cursor-pointer z-30 xxl:ml-[20px] xl:ml-[20px] lg:ml-[4px] md:ml-[5px] sm:ml-[5px] ${
                             prevArrowVisible ? "visible" : "invisible"
                         }`}
                     >
-                        <i className="fas fa-angle-left text-4xl sm:text-[20px]"></i>
+                        <i className="fas fa-angle-left text-4xl md:text-[20px] sm:text-[20px]"></i>
                     </button>
                     {/* Button Next & Prev */}
                 </div>

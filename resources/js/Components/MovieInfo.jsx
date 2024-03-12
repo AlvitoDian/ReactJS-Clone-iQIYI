@@ -3,6 +3,8 @@ import React, { useState } from "react";
 function MovieInfo() {
     const [activeTab, setActiveTab] = useState("pemeran");
 
+    const [showIcon, setShowIcon] = useState(false);
+
     const handleTabClick = (tab) => {
         setActiveTab(tab);
     };
@@ -227,7 +229,7 @@ function MovieInfo() {
                             href="#"
                             className="flex p-5 items-center hover:text-[#00cc36] text-white"
                         >
-                            <div className="w-[50px] h-[50px] ">
+                            <div className="w-[70px] h-[70px] ">
                                 <img
                                     src={star.image}
                                     className="w-full object-cover rounded-full"
@@ -257,7 +259,7 @@ function MovieInfo() {
 
             {/* Rekomendasi */}
             <div
-                className={`border-t border-[#2D2F34] grid xxl:grid-cols-6 xl:grid-cols-5 lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1 gap-[14px] ${
+                className={`border-t border-[#2D2F34] grid xxl:grid-cols-8 xl:grid-cols-5 lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1 gap-[14px] ${
                     activeTab === "rekomendasi" ? "" : "hidden"
                 }`}
             >
@@ -265,19 +267,42 @@ function MovieInfo() {
                     <a
                         key={movie.id}
                         href="/"
-                        className="relative flex flex-col transition-all duration-300 xxl:mb-2 xl:mb-2 z-10 hover:z-50 mt-7 transform scale-100 hover:scale-105"
+                        className="relative text-white hover:text-[#1CC749] flex flex-col transition-all duration-300 xxl:mb-2 xl:mb-2 z-10 hover:z-50 mt-7 transform scale-100 hover:scale-105"
+                        onMouseEnter={() => setShowIcon(movie.id)}
+                        onMouseLeave={() => setShowIcon(false)}
                     >
-                        <div className="flex items-start justify-end z-10 w-full h-auto ">
+                        <div className="flex items-center justify-center relative w-full h-auto">
                             <img
                                 src={movie.image}
                                 alt={movie.title}
                                 className="md:mr-4 rounded-[1px] object-cover"
                             />
-                            <div className="absolute text-black font-bold text-[12px] font-bold bg-[#F2BF83] px-[6px] rounded-[1px] ">
+                            <div className="absolute top-0 right-0 text-black font-bold text-[12px] font-bold bg-[#F2BF83] px-[6px] rounded-[1px] ">
                                 <span>VIP</span>
                             </div>
+                            {showIcon == movie.id && (
+                                <>
+                                    <div className="absolute text-white font-bold text-[12px] rounded-[1px]">
+                                        <a
+                                            href="/"
+                                            className="bg-[#00C936] rounded-full w-[40px] h-[40px] flex justify-center items-center hover:bg-[#10e047]"
+                                        >
+                                            <i className="fas fa-play text-sm"></i>
+                                        </a>
+                                    </div>
+                                    <div className="absolute text-white font-bold text-[12px] rounded-[1px] bottom-0 right-0 p-3">
+                                        <a
+                                            href="/"
+                                            className="bg-[#D1D3D6] rounded-full w-[40px] h-[40px] flex justify-center items-center ml-5 hover:bg-[#DEE0E3]"
+                                        >
+                                            <i className="fas fa-bookmark text-sm fa-inverse"></i>
+                                        </a>
+                                    </div>
+                                </>
+                            )}
                         </div>
-                        <span className="ml-2 mt-1 text-white font-bold text-lg md:text-base sm:text-xs">
+
+                        <span className="ml-2 mt-1 font-bold text-lg md:text-base sm:text-xs">
                             {movie.title}
                         </span>
                     </a>
