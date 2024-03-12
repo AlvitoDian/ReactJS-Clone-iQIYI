@@ -102,7 +102,7 @@ const Footer = () => {
                                             </div>
                                             <div>
                                                 <img
-                                                    src="images/qr.png"
+                                                    src="/images/qr.png"
                                                     className="w-[150px]"
                                                     alt=""
                                                 />

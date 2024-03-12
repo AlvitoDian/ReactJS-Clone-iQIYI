@@ -60,6 +60,137 @@ function MovieInfo() {
         },
     ];
 
+    const movies = [
+        {
+            id: 1,
+            title: "Last Paradise",
+            image: "/images/film1.png",
+            episodes: 20,
+            synopsis:
+                "A breathtaking journey to the Last Paradise awaits as characters embark on an epic adventure.",
+        },
+        {
+            id: 2,
+            title: "Last Paradise",
+            image: "/images/film1.png",
+            episodes: 20,
+            synopsis:
+                "Discover the enchanting world of the Last Paradise in this thrilling and captivating series.",
+        },
+        {
+            id: 3,
+            title: "Last Paradise",
+            image: "/images/film1.png",
+            episodes: 20,
+            synopsis:
+                "Experience the magic and wonders of the Last Paradise as heroes face challenges and mysteries.",
+        },
+        {
+            id: 4,
+            title: "Bjie Bet",
+            image: "/images/film1.png",
+            episodes: 20,
+            synopsis:
+                "Join the epic journey of Bjie Bet as they navigate through an exciting and action-packed adventure.",
+        },
+        {
+            id: 5,
+            title: "Last Paradise",
+            image: "/images/film1.png",
+            episodes: 20,
+            synopsis:
+                "Embark on a thrilling odyssey to the Last Paradise filled with drama, romance, and excitement.",
+        },
+        {
+            id: 6,
+            title: "Last Paradise",
+            image: "/images/film1.png",
+            episodes: 20,
+            synopsis:
+                "Witness the beauty and danger of the Last Paradise as characters strive for survival and discovery.",
+        },
+        {
+            id: 7,
+            title: "Last Paradise",
+            image: "/images/film1.png",
+            episodes: 20,
+            synopsis:
+                "Uncover the secrets and challenges of the Last Paradise in this unforgettable and mesmerizing tale.",
+        },
+        {
+            id: 8,
+            title: "Last Paradise",
+            image: "/images/film1.png",
+            episodes: 20,
+            synopsis:
+                "Explore the mysteries and wonders of the Last Paradise in this spellbinding and epic journey.",
+        },
+        {
+            id: 1,
+            title: "Last Paradise",
+            image: "/images/film1.png",
+            episodes: 20,
+            synopsis:
+                "A breathtaking journey to the Last Paradise awaits as characters embark on an epic adventure.",
+        },
+        {
+            id: 2,
+            title: "Last Paradise",
+            image: "/images/film1.png",
+            episodes: 20,
+            synopsis:
+                "Discover the enchanting world of the Last Paradise in this thrilling and captivating series.",
+        },
+        {
+            id: 3,
+            title: "Last Paradise",
+            image: "/images/film1.png",
+            episodes: 20,
+            synopsis:
+                "Experience the magic and wonders of the Last Paradise as heroes face challenges and mysteries.",
+        },
+        {
+            id: 4,
+            title: "Bjie Bet",
+            image: "/images/film1.png",
+            episodes: 20,
+            synopsis:
+                "Join the epic journey of Bjie Bet as they navigate through an exciting and action-packed adventure.",
+        },
+        {
+            id: 5,
+            title: "Last Paradise",
+            image: "/images/film1.png",
+            episodes: 20,
+            synopsis:
+                "Embark on a thrilling odyssey to the Last Paradise filled with drama, romance, and excitement.",
+        },
+        {
+            id: 6,
+            title: "Last Paradise",
+            image: "/images/film1.png",
+            episodes: 20,
+            synopsis:
+                "Witness the beauty and danger of the Last Paradise as characters strive for survival and discovery.",
+        },
+        {
+            id: 7,
+            title: "Last Paradise",
+            image: "/images/film1.png",
+            episodes: 20,
+            synopsis:
+                "Uncover the secrets and challenges of the Last Paradise in this unforgettable and mesmerizing tale.",
+        },
+        {
+            id: 8,
+            title: "Last Paradise",
+            image: "/images/film1.png",
+            episodes: 20,
+            synopsis:
+                "Explore the mysteries and wonders of the Last Paradise in this spellbinding and epic journey.",
+        },
+    ];
+
     return (
         <div className="flex flex-col">
             <div className="pt-8 flex gap-[35px]">
@@ -84,9 +215,14 @@ function MovieInfo() {
                     Rekomendasi Untuk Anda
                 </a>
             </div>
-            <div className="border-t border-[#2D2F34] grid xxl:grid-cols-4 xl:grid-cols-3 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-[16px]">
+            {/* Pemeran */}
+            <div
+                className={`border-t border-[#2D2F34] grid xxl:grid-cols-4 xl:grid-cols-3 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-[16px] ${
+                    activeTab === "pemeran" ? "" : "hidden"
+                }`}
+            >
                 {stars.map((star) => (
-                    <div className="bg-[#1A1C22]  mt-10 flex flex-col rounded-[4px]">
+                    <div className="bg-[#1A1C22] mt-7 flex flex-col rounded-[4px]">
                         <a
                             href="#"
                             className="flex p-5 items-center hover:text-[#00cc36] text-white"
@@ -117,6 +253,37 @@ function MovieInfo() {
                     </div>
                 ))}
             </div>
+            {/* Pemeran */}
+
+            {/* Rekomendasi */}
+            <div
+                className={`border-t border-[#2D2F34] grid xxl:grid-cols-6 xl:grid-cols-5 lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1 gap-[14px] ${
+                    activeTab === "rekomendasi" ? "" : "hidden"
+                }`}
+            >
+                {movies.map((movie) => (
+                    <a
+                        key={movie.id}
+                        href="/"
+                        className="relative flex flex-col transition-all duration-300 xxl:mb-2 xl:mb-2 z-10 hover:z-50 mt-7 transform scale-100 hover:scale-105"
+                    >
+                        <div className="flex items-start justify-end z-10 w-full h-auto ">
+                            <img
+                                src={movie.image}
+                                alt={movie.title}
+                                className="md:mr-4 rounded-[1px] object-cover"
+                            />
+                            <div className="absolute text-black font-bold text-[12px] font-bold bg-[#F2BF83] px-[6px] rounded-[1px] ">
+                                <span>VIP</span>
+                            </div>
+                        </div>
+                        <span className="ml-2 mt-1 text-white font-bold text-lg md:text-base sm:text-xs">
+                            {movie.title}
+                        </span>
+                    </a>
+                ))}
+            </div>
+            {/* Rekomendasi */}
         </div>
     );
 }
