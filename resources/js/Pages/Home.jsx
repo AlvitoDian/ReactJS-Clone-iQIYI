@@ -8,7 +8,7 @@ import ComingSoonMovieCard from "../Components/ComingSoonMovieCard";
 import AllStarProfile from "../Components/AllStarProfile";
 import Footer from "../Components/Footer";
 
-const Home = ({ popularMovies, nowPlayingMovies }) => {
+const Home = ({ popularMovies, nowPlayingMovies, popularActors }) => {
     const randomPopularMovies = popularMovies
         .sort(() => Math.random() - 0.5)
         .slice(0, 7);
@@ -35,7 +35,7 @@ const Home = ({ popularMovies, nowPlayingMovies }) => {
                 nowPlayingMovies={nowPlayingMovies}
             />
             <ComingSoonMovieCard />
-            <AllStarProfile />
+            <AllStarProfile popularActors={popularActors} />
             <MovieListCard
                 category={"Anime Jepang"}
                 nowPlayingMovies={nowPlayingMovies}

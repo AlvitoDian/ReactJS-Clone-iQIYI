@@ -135,7 +135,7 @@ function BannerMovie({ movie }) {
                 </div>
                 {/* info Movie */}
             </div>
-            <MovieInfo />
+            <MovieInfo actorCredits={movie.cast} />
         </div>
     );
 }

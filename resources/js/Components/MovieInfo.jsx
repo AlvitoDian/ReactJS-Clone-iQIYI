@@ -1,9 +1,13 @@
 import React, { useState } from "react";
 
-function MovieInfo() {
+function MovieInfo({ actorCredits }) {
     const [activeTab, setActiveTab] = useState("pemeran");
 
     const [showIcon, setShowIcon] = useState(false);
+
+    const [actors, setActors] = useState([actorCredits]);
+
+    console.log(actors);
 
     const handleTabClick = (tab) => {
         setActiveTab(tab);
@@ -223,26 +227,31 @@ function MovieInfo() {
                     activeTab === "pemeran" ? "" : "hidden"
                 }`}
             >
-                {stars.map((star) => (
-                    <div className="bg-[#1A1C22] mt-7 flex flex-col rounded-[4px]">
+                {actorCredits.map((actor, index) => (
+                    <div
+                        className="bg-[#1A1C22] mt-7 flex flex-col rounded-[4px]"
+                        key={index}
+                    >
                         <a
                             href="#"
                             className="flex p-5 items-center hover:text-[#00cc36] text-white"
                         >
-                            <div className="w-[70px] h-[70px] ">
-                                <img
-                                    src={star.image}
-                                    className="w-full object-cover rounded-full"
-                                    alt=""
-                                />
+                            <div className="w-[70px] h-[60px] rounded-full overflow-hidden">
+                                <div
+                                    className="w-full h-full bg-cover bg-center rounded-full"
+                                    style={{
+                                        backgroundImage: `url(${actor.profile_url})`,
+                                    }}
+                                ></div>
                             </div>
+
                             <div className="flex flex-col pt-[10px] pb-[10px] pl-[10px] w-full">
                                 <span className="text-[16px] font-medium">
-                                    {star.name}
+                                    {actor.name}
                                 </span>
                                 <div className="flex">
                                     <div className="text-[#a9a9ac] text-[12px] font-medium">
-                                        Pemeran
+                                        {actor.known_for_department}
                                     </div>
 
                                     <div className="text-[#00cc36] text-[12px] font-medium ml-auto">

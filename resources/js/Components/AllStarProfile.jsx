@@ -3,10 +3,21 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-const AllStarProfile = () => {
+const AllStarProfile = ({ popularActors }) => {
     const [currentSlide, setCurrentSlide] = useState(0);
     const [prevArrowVisible, setPrevArrowVisible] = useState(false);
     const sliderRef = useRef(null);
+
+    const [actors, setActors] = useState(popularActors);
+    const [isProfileHover, setProfileHover] = useState(false);
+
+    const handleMouseEnter = (actorId) => {
+        setProfileHover(actorId);
+    };
+
+    const handleMouseLeave = () => {
+        setProfileHover(false);
+    };
 
     const handleBeforeChange = (current, next) => {
         if (next === 0) {
@@ -157,22 +168,32 @@ const AllStarProfile = () => {
                             beforeChange={handleBeforeChange}
                             afterChange={handleAfterChange}
                         >
-                            {stars.map((star) => (
+                            {actors.map((actor) => (
                                 <a
-                                    key={star.id}
+                                    key={actor.id}
                                     href="/"
                                     className="flex flex-col mr-3 w-[210px] md:w-[140px] sm:w-[111px] h-auto transition-all duration-300 xxl:mb-2 xl:mb-2 relative py-10 z-10 hover:z-50"
                                 >
-                                    <div className="transform scale-100 hover:scale-110 transition-transform duration-300 text-white hover:text-[#00C936] flex py-2 flex-col justify-center items-center">
+                                    <div
+                                        className="transform scale-100 hover:scale-110 transition-transform duration-300 text-white hover:text-[#00C936] flex py-2 flex-col justify-center items-center"
+                                        onMouseEnter={() => {
+                                            handleMouseEnter(actor.id);
+                                        }}
+                                        onMouseLeave={handleMouseLeave}
+                                    >
                                         <div className="flex items-end z-10 h-40 w-40 sm:w-28 sm:h-28">
                                             <img
-                                                src={star.image}
-                                                alt={star.name}
-                                                className="md:mr-4 mb-3 rounded-full object-cover hover:border-2 hover:border-[#00C936] "
+                                                src={actor.profile_url}
+                                                alt={actor.name}
+                                                className={`md:mr-4 mb-3 rounded-full object-cover sm:h-[120px] h-[160px] w-[160px] ${
+                                                    isProfileHover === actor.id
+                                                        ? "border-2 border-[#00C936] "
+                                                        : ""
+                                                } `}
                                             />
                                         </div>
                                         <span className="font-bold text-lg md:text-base sm:text-xs opacity-[0.8]">
-                                            {star.name}
+                                            {actor.name}
                                         </span>
                                     </div>
                                 </a>
