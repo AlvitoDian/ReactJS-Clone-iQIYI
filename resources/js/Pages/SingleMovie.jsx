@@ -3,11 +3,11 @@ import Navbar from "@/Components/Navbar";
 import Footer from "../Components/Footer";
 import BannerMovie from "../Components/BannerMovie";
 
-const Home = () => {
+const Home = ({ movie }) => {
     return (
         <>
             <Navbar />
-            <BannerMovie />
+            <BannerMovie movie={movie} />
             <Footer />
         </>
     );

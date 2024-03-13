@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import MovieInfo from "./MovieInfo";
 
-function BannerMovie() {
+function BannerMovie({ movie }) {
+    const [genre, setGenre] = useState(movie.genres);
     return (
         <div className="container-xl xxl:px-12 xl:px-12 lg:px-10 md:px-5 sm:px-5">
             <div className="grid grid-cols-2 sm:grid-cols-1">
@@ -24,7 +25,7 @@ function BannerMovie() {
                         }}
                     ></div>
                     <img
-                        src="/images/banner2.jpg"
+                        src={movie.backdrop_url}
                         alt=""
                         className="object-cover w-full h-full"
                     />
@@ -34,7 +35,7 @@ function BannerMovie() {
                 <div className="mt-32 sm:mt-4 flex flex-col gap-3 pr-5">
                     {/* Judul */}
                     <h1 className="text-[40px] text-white font-extrabold">
-                        BORUTO NEXT GENERATION
+                        {movie.title}
                     </h1>
                     {/* Judul */}
 
@@ -52,12 +53,12 @@ function BannerMovie() {
                     {/* Rate */}
                     <div className="content-center xxl:text-lg xl:text-lg md:text-xs sm:text-xs text-white">
                         <span className="font-bold mb-4 inline text-[#00C936] pr-2">
-                            &#9733; 9,6
+                            &#9733; {movie.vote_average.toFixed(1)}
                         </span>
                         <div className="border-l-[2px] border-[#808080] pr-[3px] -py-6 inline"></div>
 
                         <span className="font-normal mb-4 inline pl-3 pr-3">
-                            2020
+                            {new Date(movie.release_date).getFullYear()}
                         </span>
 
                         <div className="border-l-[2px] border-[#808080] pr-[3px] -py-6 inline"></div>
@@ -69,31 +70,21 @@ function BannerMovie() {
                         <div className="border-l-[2px] border-[#808080] pr-[3px] -py-6 inline"></div>
 
                         <span className="font-normal mb-4 inline pl-3 pr-3">
-                            Full 20 Episode
+                            Full {movie.runtime} Episode
                         </span>
                     </div>
                     {/* Rate */}
 
                     {/* Genre */}
                     <div className="content-center sm:hidden md:hidden text-white">
-                        <span className="text-[12px] font-medium mb-4 bg-white bg-opacity-10 inline py-[3px] rounded mr-[10px] px-[4px]">
-                            Aksi
-                        </span>
-                        <span className="text-[12px] font-medium mb-4 bg-white bg-opacity-10 inline py-[3px] rounded mr-[10px] px-[4px]">
-                            Komedi
-                        </span>
-                        <span className="text-[12px] font-medium mb-4 bg-white bg-opacity-10 inline py-[3px] rounded mr-[10px] px-[4px]">
-                            Sci-fi
-                        </span>
-                        <span className="text-[12px] font-medium mb-4 bg-white bg-opacity-10 inline py-[3px] rounded mr-[10px] px-[4px]">
-                            Sejarah
-                        </span>
-                        <span className="text-[12px] font-medium mb-4 bg-white bg-opacity-10 inline py-[3px] rounded mr-[10px] px-[4px]">
-                            Drama
-                        </span>
-                        <span className="text-[12px] font-medium mb-4 bg-white bg-opacity-10 inline py-[3px] rounded mr-[10px] px-[4px]">
-                            Romance
-                        </span>
+                        {genre.map((genreItem) => (
+                            <span
+                                className="text-[12px] font-medium mb-4 bg-white bg-opacity-10 inline py-[3px] rounded mr-[10px] px-[4px]"
+                                key={genreItem.id}
+                            >
+                                {genreItem.name}
+                            </span>
+                        ))}
                     </div>
                     {/* Genre */}
 
@@ -111,15 +102,8 @@ function BannerMovie() {
 
                     {/* Deskripsi */}
                     <h4 className="text-[13px] text-white font-normal">
-                        <span className="opacity-50">Deskripsi: </span>Dengan
-                        kedamaian dan modernisasi, para penduduk desa ninja
-                        Konoha makin banyak dan gaya hidup ninja terus berubah.
-                        Boruto, putra Naruto Uzumaki, kepala desa ketujuh,
-                        belajar di Akademi Ninja tempat dia bertemu dengan
-                        rekan-rekan tim barunya. Bagaimana mereka akan berkelahi
-                        melawan insiden misterius di desa? Kisah Boruto Uzumaki
-                        yang menyentuh hati semua orang seperti embusan angin
-                        dimulai sekarang!
+                        <span className="opacity-50">Deskripsi: </span>
+                        {movie.overview}
                     </h4>
                     {/* Deskripsi */}
 

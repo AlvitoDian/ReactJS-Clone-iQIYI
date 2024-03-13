@@ -11,8 +11,6 @@ const TopMovieListCard = ({ category, popularMovies }) => {
 
     const [moviesPopular, setMoviesPopular] = useState(popularMovies);
 
-    console.log(moviesPopular);
-
     function truncateWords(str, words) {
         return str.split(" ").slice(0, words).join(" ");
     }
@@ -265,7 +263,7 @@ const TopMovieListCard = ({ category, popularMovies }) => {
                             {moviesPopular.map((movie, index) => (
                                 <a
                                     key={index}
-                                    href="/"
+                                    href={`/movie/${movie.id}`}
                                     className="flex flex-col mr-3 w-[210px] md:w-[140px] sm:w-[111px] h-auto transition-all duration-300 xxl:mb-2 xl:mb-2 relative py-10 z-10 hover:z-50"
                                     onMouseEnter={() => {
                                         handleMouseEnter(movie.id);
@@ -297,7 +295,7 @@ const TopMovieListCard = ({ category, popularMovies }) => {
                                             </span>
                                         </div>
                                     </div>
-                                    <span className="ml-2 mt-1 text-white font-bold text-lg md:text-base sm:text-xs">
+                                    <span className="mt-1 text-white font-bold text-lg md:text-base sm:text-xs">
                                         {movie.title}
                                     </span>
                                     {isModalVisible === movie.id && (

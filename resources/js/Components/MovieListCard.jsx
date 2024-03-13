@@ -1,13 +1,19 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-const MovieListCard = ({ category }) => {
+const MovieListCard = ({ category, nowPlayingMovies }) => {
     const [currentSlide, setCurrentSlide] = useState(0);
     const [prevArrowVisible, setPrevArrowVisible] = useState(false);
     const [isModalVisible, setModalVisible] = useState(false);
     const sliderRef = useRef(null);
+
+    const [nowMovies, setNowMovies] = useState(nowPlayingMovies);
+
+    function truncateWords(str, words) {
+        return str.split(" ").slice(0, words).join(" ");
+    }
 
     const handleMouseEnter = (movieId) => {
         setModalVisible(movieId);
@@ -55,7 +61,6 @@ const MovieListCard = ({ category }) => {
                     slidesToShow: 5,
                     slidesToScroll: 5,
                     infinite: true,
-                    dots: true,
                     swipe: false,
                     dots: false,
                 },
@@ -66,7 +71,6 @@ const MovieListCard = ({ category }) => {
                     slidesToShow: 3,
                     slidesToScroll: 3,
                     infinite: true,
-                    dots: true,
                     swipe: false,
                     dots: false,
                 },
@@ -95,145 +99,6 @@ const MovieListCard = ({ category }) => {
         ],
     };
 
-    const data = [
-        { id: 1, content: "Slide 1" },
-        { id: 2, content: "Slide 2" },
-        { id: 3, content: "Slide 3" },
-        { id: 4, content: "Slide 4" },
-        { id: 5, content: "Slide 5" },
-        { id: 6, content: "Slide 6" },
-    ];
-
-    const movies = [
-        {
-            id: 1,
-            title: "Last Paradise",
-            image: "images/film1.png",
-            episodes: 20,
-            synopsis:
-                "A breathtaking journey to the Last Paradise awaits as characters embark on an epic adventure.",
-        },
-        {
-            id: 2,
-            title: "Last Paradise",
-            image: "images/film1.png",
-            episodes: 20,
-            synopsis:
-                "Discover the enchanting world of the Last Paradise in this thrilling and captivating series.",
-        },
-        {
-            id: 3,
-            title: "Last Paradise",
-            image: "images/film1.png",
-            episodes: 20,
-            synopsis:
-                "Experience the magic and wonders of the Last Paradise as heroes face challenges and mysteries.",
-        },
-        {
-            id: 4,
-            title: "Bjie Bet",
-            image: "images/film1.png",
-            episodes: 20,
-            synopsis:
-                "Join the epic journey of Bjie Bet as they navigate through an exciting and action-packed adventure.",
-        },
-        {
-            id: 5,
-            title: "Last Paradise",
-            image: "images/film1.png",
-            episodes: 20,
-            synopsis:
-                "Embark on a thrilling odyssey to the Last Paradise filled with drama, romance, and excitement.",
-        },
-        {
-            id: 6,
-            title: "Last Paradise",
-            image: "images/film1.png",
-            episodes: 20,
-            synopsis:
-                "Witness the beauty and danger of the Last Paradise as characters strive for survival and discovery.",
-        },
-        {
-            id: 7,
-            title: "Last Paradise",
-            image: "images/film1.png",
-            episodes: 20,
-            synopsis:
-                "Uncover the secrets and challenges of the Last Paradise in this unforgettable and mesmerizing tale.",
-        },
-        {
-            id: 8,
-            title: "Last Paradise",
-            image: "images/film1.png",
-            episodes: 20,
-            synopsis:
-                "Explore the mysteries and wonders of the Last Paradise in this spellbinding and epic journey.",
-        },
-        {
-            id: 1,
-            title: "Last Paradise",
-            image: "images/film1.png",
-            episodes: 20,
-            synopsis:
-                "A breathtaking journey to the Last Paradise awaits as characters embark on an epic adventure.",
-        },
-        {
-            id: 2,
-            title: "Last Paradise",
-            image: "images/film1.png",
-            episodes: 20,
-            synopsis:
-                "Discover the enchanting world of the Last Paradise in this thrilling and captivating series.",
-        },
-        {
-            id: 3,
-            title: "Last Paradise",
-            image: "images/film1.png",
-            episodes: 20,
-            synopsis:
-                "Experience the magic and wonders of the Last Paradise as heroes face challenges and mysteries.",
-        },
-        {
-            id: 4,
-            title: "Bjie Bet",
-            image: "images/film1.png",
-            episodes: 20,
-            synopsis:
-                "Join the epic journey of Bjie Bet as they navigate through an exciting and action-packed adventure.",
-        },
-        {
-            id: 5,
-            title: "Last Paradise",
-            image: "images/film1.png",
-            episodes: 20,
-            synopsis:
-                "Embark on a thrilling odyssey to the Last Paradise filled with drama, romance, and excitement.",
-        },
-        {
-            id: 6,
-            title: "Last Paradise",
-            image: "images/film1.png",
-            episodes: 20,
-            synopsis:
-                "Witness the beauty and danger of the Last Paradise as characters strive for survival and discovery.",
-        },
-        {
-            id: 7,
-            title: "Last Paradise",
-            image: "images/film1.png",
-            episodes: 20,
-            synopsis:
-                "Uncover the secrets and challenges of the Last Paradise in this unforgettable and mesmerizing tale.",
-        },
-        {
-            id: 8,
-            title: "Last Paradise",
-            image: "images/film1.png",
-            episodes: 20,
-            synopsis:
-                "Explore the mysteries and wonders of the Last Paradise in this spellbinding and epic journey.",
-        },
-    ];
     return (
         <div className="container-xl bg-[#111319] h-auto  ">
             <div className="relative z-20 transition-all duration-300 xxl:px-12 xl:px-12 lg:px-7 md:px-3 sm:px-5">
@@ -254,10 +119,10 @@ const MovieListCard = ({ category }) => {
                             beforeChange={handleBeforeChange}
                             afterChange={handleAfterChange}
                         >
-                            {movies.map((movie) => (
+                            {nowMovies.map((movie, index) => (
                                 <a
-                                    key={movie.id}
-                                    href="/"
+                                    key={index}
+                                    href={`/movie/${movie.id}`}
                                     className="flex flex-col mr-3 w-[210px] md:w-[140px] sm:w-[111px] h-auto transition-all duration-300 xxl:mb-2 xl:mb-2 relative py-10 z-10 hover:z-50"
                                     onMouseEnter={() => {
                                         handleMouseEnter(movie.id);
@@ -265,25 +130,40 @@ const MovieListCard = ({ category }) => {
                                     onMouseLeave={handleMouseLeave}
                                 >
                                     <div className="flex items-end">
-                                        <img
-                                            src={movie.image}
-                                            alt={movie.title}
-                                            className="md:mr-4 rounded-md w-full object-cover xxl:h-[300px] xl:h-[300px] lg:h-[300px] md:h-[300px] sm:h-[170px]"
-                                        />
-                                        <span className="absolute text-gray-200 font-bold p-2 text-md md:text-base sm:text-xs">
-                                            Full {movie.episodes} episode
-                                        </span>
+                                        <div className="relative">
+                                            <div
+                                                className="absolute inset-0"
+                                                style={{
+                                                    backgroundImage: `url('/images/overlay_single_mobile.png')`,
+                                                    backgroundSize: "100% 100%",
+                                                    opacity: 0.7,
+                                                    zIndex: 1,
+                                                }}
+                                            ></div>
+                                            <img
+                                                src={movie.poster_url}
+                                                alt={movie.title}
+                                                className="md:mr-4 rounded-md w-full object-cover xxl:h-[300px] xl:h-[300px] lg:h-[300px] md:h-[300px] sm:h-[170px]"
+                                            />
+                                        </div>
+                                        <div className="absolute text-gray-200 font-bold p-2 text-md md:text-base sm:text-xs z-[50] flex items-center justify-center">
+                                            {/* Full {movie.episodes} episode */}
+                                            <div>&#9733;</div>
+                                            <span className="ml-[3px]">
+                                                {movie.vote_average.toFixed(1)}
+                                            </span>
+                                        </div>
                                     </div>
-                                    <span className="ml-2 mt-1 text-white font-bold text-lg md:text-base sm:text-xs">
+                                    <span className="mt-1 text-white font-bold text-lg md:text-base sm:text-xs">
                                         {movie.title}
                                     </span>
                                     {isModalVisible === movie.id && (
-                                        <div className="flex content-center items-center transition-transform duration-300 transform scale-100 hover:scale-125 absolute top-10 shadow">
+                                        <div className="flex content-center items-center transition-transform duration-300 transform scale-100 hover:scale-125 absolute top-10 shadow z-[600]">
                                             <div className="max-w-xs bg-[#1A1C22] rounded h-[300px]">
                                                 <div className="relative flex items-end justify-end">
                                                     <img
                                                         className="rounded-t h-[130px] w-full object-cover"
-                                                        src="images/film2.png"
+                                                        src={movie.backdrop_url}
                                                         alt=""
                                                     />
                                                     {/* Tombol Play dan Bookmark */}
@@ -313,7 +193,10 @@ const MovieListCard = ({ category }) => {
 
                                                     <div className="content-center text-white text-xs font-md pb-1">
                                                         <h1 className="mb-4 inline text-[#00C936] pr-1 font-bold">
-                                                            &#9733; 9,6
+                                                            &#9733;
+                                                            {movie.vote_average.toFixed(
+                                                                1
+                                                            )}
                                                         </h1>
                                                         <div className="border-l-[2px] border-[#808080] pr-[1px] -py-6 inline"></div>
 
@@ -324,7 +207,9 @@ const MovieListCard = ({ category }) => {
                                                         <div className="border-l-[2px] border-[#808080] pr-[1px] -py-6 inline"></div>
 
                                                         <h1 className="mb-4 inline pl-1 pr-1">
-                                                            2024
+                                                            {new Date(
+                                                                movie.release_date
+                                                            ).getFullYear()}
                                                         </h1>
                                                     </div>
                                                     <div className="content-center text-white">
@@ -336,7 +221,11 @@ const MovieListCard = ({ category }) => {
                                                         </h1>
                                                     </div>
                                                     <p className="mb-3 mt-3 font-small text-white text-[12px]">
-                                                        {movie.synopsis}
+                                                        {truncateWords(
+                                                            movie.overview,
+                                                            15
+                                                        )}
+                                                        ...
                                                     </p>
                                                 </div>
                                             </div>

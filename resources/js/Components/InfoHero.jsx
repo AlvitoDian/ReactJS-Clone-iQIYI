@@ -1,7 +1,33 @@
 import React from "react";
 import TextTruncate from "react-text-truncate";
 
-const InfoHero = () => {
+const InfoHero = ({ rate, year, overview, genreIds }) => {
+    function truncateWords(str, words) {
+        return str.split(" ").slice(0, words).join(" ");
+    }
+
+    const genreNames = {
+        28: "Action",
+        12: "Adventure",
+        16: "Animation",
+        35: "Comedy",
+        80: "Crime",
+        99: "Documentary",
+        18: "Drama",
+        10751: "Family",
+        14: "Fantasy",
+        36: "History",
+        27: "Horror",
+        10402: "Music",
+        9648: "Mystery",
+        10749: "Romance",
+        878: "Science Fiction",
+        10770: "TV Movie",
+        53: "Thriller",
+        10752: "War",
+        37: "Western",
+    };
+
     return (
         <div className="flex flex-col xxl:px-14 xl:px-14 lg:px-14 sm:px-3 md:px-3 xxl:pb-[10.65rem] xl:pb-[10.65rem] text-white z-20 absolute bottom-0">
             {/* Badge */}
@@ -20,11 +46,13 @@ const InfoHero = () => {
             {/* Rating */}
             <div className="content-center pt-4 xxl:text-lg xl:text-lg md:text-xs sm:text-xs">
                 <span className="font-bold mb-4 inline text-[#00C936] pr-2">
-                    &#9733; 9,6
+                    &#9733; {rate.toFixed(1)}
                 </span>
                 <div className="border-l-[2px] border-[#808080] pr-[3px] -py-6 inline"></div>
 
-                <span className="font-bold mb-4 inline pl-3 pr-3">2020</span>
+                <span className="font-bold mb-4 inline pl-3 pr-3">
+                    {new Date(year).getFullYear()}
+                </span>
 
                 <div className="border-l-[2px] border-[#808080] pr-[3px] -py-6 inline"></div>
 
@@ -39,35 +67,20 @@ const InfoHero = () => {
             {/* Rating */}
             {/* Genre */}
             <div className="content-center pt-4 sm:hidden md:hidden">
-                <span className="text-xs font-bold mb-4 bg-black bg-opacity-30 inline p-[5px] rounded mr-1">
-                    Aksi
-                </span>
-                <span className="text-xs font-bold mb-4 bg-black bg-opacity-30 inline p-[5px] rounded mr-1">
-                    Komedi
-                </span>
-                <span className="text-xs font-bold mb-4 bg-black bg-opacity-30 inline p-[5px] rounded mr-1">
-                    Sci-fi
-                </span>
-                <span className="text-xs font-bold mb-4 bg-black bg-opacity-30 inline p-[5px] rounded mr-1">
-                    Sejarah
-                </span>
-                <span className="text-xs font-bold mb-4 bg-black bg-opacity-30 inline p-[5px] rounded mr-1">
-                    Drama
-                </span>
-                <span className="text-xs font-bold mb-4 bg-black bg-opacity-30 inline p-[5px] rounded mr-1">
-                    Romance
-                </span>
+                {genreIds.map((genre, index) => (
+                    <span
+                        className="text-xs font-bold mb-4 bg-white bg-opacity-30 inline p-[5px] rounded mr-1"
+                        key={index}
+                    >
+                        {genreNames[genre] || "Unknown Genre"}
+                    </span>
+                ))}
             </div>
             {/* Genre */}
             {/* Synopsis */}
             <div className="content-center pt-4 w-[400px] sm:hidden md:hidden">
                 <span className="text-sm font-bold mb-4 inline rounded mr-1">
-                    <TextTruncate
-                        line={3}
-                        element="span"
-                        truncateText="..."
-                        text='"Lorem ipsum dolor, sit amet consectetur adipisicing elit. Atque sit ullam maxime saepe labore? Nobis temporibus quae nihil illo ab! Lorem ipsum dolor, sit amet consectetur adipisicing elit. Atque sit ullam maxime saepe labore? Nobis temporibus quae nihil illo ab! Lorem ipsum dolor, sit amet consectetur adipisicing elit. Atque sit ullam maxime saepe labore? Nobis temporibus quae nihil illo ab! Lorem ipsum dolor, sit amet consectetur adipisicing elit. Atque sit ullam maxime saepe labore? Nobis temporibus quae nihil illo ab!"'
-                    />
+                    {'"' + truncateWords(overview, 20) + '..."'}
                 </span>
             </div>
             {/* Synopsis */}

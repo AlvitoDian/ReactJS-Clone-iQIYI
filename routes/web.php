@@ -17,6 +17,4 @@ use App\Http\Controllers\HomeController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
-Route::get('/movie/1', function () {
-    return Inertia::render('SingleMovie');
-});
+Route::get('/movie/{id}', [HomeController::class, 'show'])->name('detail-movie');

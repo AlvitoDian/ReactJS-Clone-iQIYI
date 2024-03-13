@@ -1,21 +1,17 @@
 import React, { useState, useEffect } from "react";
 import InfoHero from "./InfoHero";
+import { random } from "lodash";
 
-const HeroSection = () => {
-    const images = [
-        "images/banner1.jpg",
-        "images/banner2.jpg",
-        "images/banner3.jpg",
-    ];
-
+const HeroSection = ({ randomPopularMovies }) => {
     const [currentSlide, setCurrentSlide] = useState(0);
     const [opacity, setOpacity] = useState(1);
+    const [randomMovies, setRandomMovies] = useState(randomPopularMovies);
 
     const nextSlide = () => {
         setOpacity(0);
         setTimeout(() => {
             setCurrentSlide((prevSlide) =>
-                prevSlide === images.length - 1 ? 0 : prevSlide + 1
+                prevSlide === randomPopularMovies.length - 1 ? 0 : prevSlide + 1
             );
         }, 250);
     };
@@ -24,7 +20,7 @@ const HeroSection = () => {
         setOpacity(0);
         setTimeout(() => {
             setCurrentSlide((prevSlide) =>
-                prevSlide === 0 ? images.length - 1 : prevSlide - 1
+                prevSlide === 0 ? randomPopularMovies.length - 1 : prevSlide - 1
             );
         }, 250);
     };
@@ -52,13 +48,18 @@ const HeroSection = () => {
                     zIndex: 1,
                 }}
             ></div>
-            <InfoHero />
+            <InfoHero
+                rate={randomMovies[currentSlide]?.vote_average}
+                year={randomMovies[currentSlide]?.release_date}
+                overview={randomMovies[currentSlide]?.overview}
+                genreIds={randomMovies[currentSlide]?.genre_ids}
+            />
             <div
                 className="flex transition-opacity duration-500 ease-in-out object-fit xl:h-screen xxl:h-screen"
                 style={{ opacity }}
             >
                 <img
-                    src={images[currentSlide]}
+                    src={randomMovies[currentSlide]?.backdrop_url}
                     className="h-full  w-screen object-cover"
                 />
             </div>

@@ -16,24 +16,40 @@ class HomeController extends Controller
     public function index()
     {
         $client = new Client();
-        $response = $client->get(env('TMDB_BASE_URL') . 'movie/popular', [
+
+        $responsePopular = $client->get(env('TMDB_BASE_URL') . 'movie/popular', [
             'query' => [
                 'api_key' => env('TMDB_API_KEY'),
             ],
         ]);
 
-        $movies = json_decode($response->getBody(), true)['results'];
+        $responseNowPlaying = $client->get(env('TMDB_BASE_URL') . 'movie/now_playing', [
+            'query' => [
+                'api_key' => env('TMDB_API_KEY'),
+                'page' => 2,
+            ],
+        ]);
 
- 
+        $popularMovies = json_decode($responsePopular->getBody(), true)['results'];
+
+        $nowPlayingMovies = json_decode($responseNowPlaying->getBody(), true)['results'];
+
         $posterBaseUrl = env('TMDB_POSTER_URL');
         $backdropBaseUrl = env('TMDB_BACKDROP_URL');
-        foreach ($movies as &$movie) {
+
+        foreach ($popularMovies as &$movie) {
+            $movie['poster_url'] = $posterBaseUrl . $movie['poster_path'];
+            $movie['backdrop_url'] = $backdropBaseUrl . $movie['backdrop_path'];
+        }
+
+        foreach ($nowPlayingMovies as &$movie) {
             $movie['poster_url'] = $posterBaseUrl . $movie['poster_path'];
             $movie['backdrop_url'] = $backdropBaseUrl . $movie['backdrop_path'];
         }
 
         return Inertia::render('Home', [
-            'movies' => $movies,
+            'popularMovies' => $popularMovies,
+            'nowPlayingMovies' => $nowPlayingMovies,
         ]);
     }
 
@@ -56,7 +72,25 @@ class HomeController extends Controller
      */
     public function show($id)
     {
-        //
+        $client = new Client();
+
+        $response = $client->get(env('TMDB_BASE_URL') . 'movie/' . $id, [
+            'query' => [
+                'api_key' => env('TMDB_API_KEY'),
+            ],
+        ]);
+
+        $movie = json_decode($response->getBody(), true);
+
+        $posterBaseUrl = env('TMDB_POSTER_URL');
+        $backdropBaseUrl = env('TMDB_BACKDROP_URL');
+        $movie['poster_url'] = $posterBaseUrl . $movie['poster_path'];
+        $movie['backdrop_url'] = $backdropBaseUrl . $movie['backdrop_path'];
+        
+
+        return Inertia::render('SingleMovie', [
+            'movie' => $movie,
+        ]);
     }
 
     /**

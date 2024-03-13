@@ -8,22 +8,38 @@ import ComingSoonMovieCard from "../Components/ComingSoonMovieCard";
 import AllStarProfile from "../Components/AllStarProfile";
 import Footer from "../Components/Footer";
 
-const Home = ({ movies }) => {
+const Home = ({ popularMovies, nowPlayingMovies }) => {
+    const randomPopularMovies = popularMovies
+        .sort(() => Math.random() - 0.5)
+        .slice(0, 7);
+
     return (
         <>
             <Navbar />
-            <HeroSection />
+            <HeroSection randomPopularMovies={randomPopularMovies} />
             <TopMovieListCard
                 category={"Rekomendasi Populer"}
-                popularMovies={movies}
+                popularMovies={popularMovies}
             />
             <BadgeCategory />
-            <MovieListCard category={"Limited Time Free"} />
-            <MovieListCard category={"Rekomendasi Untuk Anda"} />
-            <MovieListCard category={"Popular"} />
+            <MovieListCard
+                category={"Limited Time Free"}
+                nowPlayingMovies={nowPlayingMovies}
+            />
+            <MovieListCard
+                category={"Rekomendasi Untuk Anda"}
+                nowPlayingMovies={nowPlayingMovies}
+            />
+            <MovieListCard
+                category={"Popular"}
+                nowPlayingMovies={nowPlayingMovies}
+            />
             <ComingSoonMovieCard />
             <AllStarProfile />
-            <MovieListCard category={"Anime Jepang"} />
+            <MovieListCard
+                category={"Anime Jepang"}
+                nowPlayingMovies={nowPlayingMovies}
+            />
             <Footer />
         </>
     );
