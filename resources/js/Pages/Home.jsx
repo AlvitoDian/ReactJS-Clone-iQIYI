@@ -7,8 +7,14 @@ import MovieListCard from "../Components/MovieListCard";
 import ComingSoonMovieCard from "../Components/ComingSoonMovieCard";
 import AllStarProfile from "../Components/AllStarProfile";
 import Footer from "../Components/Footer";
+import { MovieContext } from "../Contexts/MovieContext";
 
-const Home = ({ popularMovies, nowPlayingMovies, popularActors }) => {
+const Home = ({
+    popularMovies,
+    nowPlayingMovies,
+    popularActors,
+    upComingMovies,
+}) => {
     const randomPopularMovies = popularMovies
         .sort(() => Math.random() - 0.5)
         .slice(0, 7);
@@ -17,29 +23,23 @@ const Home = ({ popularMovies, nowPlayingMovies, popularActors }) => {
         <>
             <Navbar />
             <HeroSection randomPopularMovies={randomPopularMovies} />
-            <TopMovieListCard
-                category={"Rekomendasi Populer"}
-                popularMovies={popularMovies}
-            />
-            <BadgeCategory />
-            <MovieListCard
-                category={"Limited Time Free"}
-                nowPlayingMovies={nowPlayingMovies}
-            />
-            <MovieListCard
-                category={"Rekomendasi Untuk Anda"}
-                nowPlayingMovies={nowPlayingMovies}
-            />
-            <MovieListCard
-                category={"Popular"}
-                nowPlayingMovies={nowPlayingMovies}
-            />
-            <ComingSoonMovieCard />
-            <AllStarProfile popularActors={popularActors} />
-            <MovieListCard
-                category={"Anime Jepang"}
-                nowPlayingMovies={nowPlayingMovies}
-            />
+            <MovieContext.Provider
+                value={{
+                    popularMovies,
+                    nowPlayingMovies,
+                    popularActors,
+                    upComingMovies,
+                }}
+            >
+                <TopMovieListCard category={"Rekomendasi Populer"} />
+                <BadgeCategory />
+                <MovieListCard category={"Limited Time Free"} />
+                <MovieListCard category={"Rekomendasi Untuk Anda"} />
+                <MovieListCard category={"Popular"} />
+                <ComingSoonMovieCard />
+                <AllStarProfile />
+                <MovieListCard category={"Anime Jepang"} />
+            </MovieContext.Provider>
             <Footer />
         </>
     );

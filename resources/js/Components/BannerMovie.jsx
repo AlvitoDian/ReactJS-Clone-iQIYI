@@ -1,8 +1,31 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import MovieInfo from "./MovieInfo";
+import { SingleMovieContext } from "../Contexts/SingleMovieContext";
 
-function BannerMovie({ movie }) {
-    const [genre, setGenre] = useState(movie.genres);
+function BannerMovie() {
+    const { movie, posterUrl, popularMovies } = useContext(SingleMovieContext);
+
+    const genreNames = {
+        28: "Action",
+        12: "Adventure",
+        16: "Animation",
+        35: "Comedy",
+        80: "Crime",
+        99: "Documentary",
+        18: "Drama",
+        10751: "Family",
+        14: "Fantasy",
+        36: "History",
+        27: "Horror",
+        10402: "Music",
+        9648: "Mystery",
+        10749: "Romance",
+        878: "Science Fiction",
+        10770: "TV Movie",
+        53: "Thriller",
+        10752: "War",
+        37: "Western",
+    };
     return (
         <div className="container-xl xxl:px-12 xl:px-12 lg:px-10 md:px-5 sm:px-5">
             <div className="grid grid-cols-2 sm:grid-cols-1">
@@ -77,12 +100,12 @@ function BannerMovie({ movie }) {
 
                     {/* Genre */}
                     <div className="content-center sm:hidden md:hidden text-white">
-                        {genre.map((genreItem) => (
+                        {movie.genre_ids.map((genre, index) => (
                             <span
                                 className="text-[12px] font-medium mb-4 bg-white bg-opacity-10 inline py-[3px] rounded mr-[10px] px-[4px]"
-                                key={genreItem.id}
+                                key={index}
                             >
-                                {genreItem.name}
+                                {genreNames[genre] || "Unknown Genre"}
                             </span>
                         ))}
                     </div>
@@ -135,7 +158,11 @@ function BannerMovie({ movie }) {
                 </div>
                 {/* info Movie */}
             </div>
-            <MovieInfo actorCredits={movie.cast} />
+            <MovieInfo
+                actorCredits={movie.cast}
+                posterUrl={posterUrl}
+                popularMovies={popularMovies}
+            />
         </div>
     );
 }

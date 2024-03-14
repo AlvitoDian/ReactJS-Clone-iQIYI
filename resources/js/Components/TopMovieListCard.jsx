@@ -1,15 +1,39 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useContext } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { MovieContext } from "../Contexts/MovieContext";
 
-const TopMovieListCard = ({ category, popularMovies }) => {
+const TopMovieListCard = ({ category }) => {
+    const { popularMovies } = useContext(MovieContext);
     const [currentSlide, setCurrentSlide] = useState(0);
     const [prevArrowVisible, setPrevArrowVisible] = useState(false);
     const [isModalVisible, setModalVisible] = useState(false);
     const sliderRef = useRef(null);
 
     const [moviesPopular, setMoviesPopular] = useState(popularMovies);
+
+    const genreNames = {
+        28: "Action",
+        12: "Adventure",
+        16: "Animation",
+        35: "Comedy",
+        80: "Crime",
+        99: "Documentary",
+        18: "Drama",
+        10751: "Family",
+        14: "Fantasy",
+        36: "History",
+        27: "Horror",
+        10402: "Music",
+        9648: "Mystery",
+        10749: "Romance",
+        878: "Science Fiction",
+        10770: "TV Movie",
+        53: "Thriller",
+        10752: "War",
+        37: "Western",
+    };
 
     function truncateWords(str, words) {
         return str.split(" ").slice(0, words).join(" ");
@@ -101,145 +125,6 @@ const TopMovieListCard = ({ category, popularMovies }) => {
         ],
     };
 
-    const data = [
-        { id: 1, content: "Slide 1" },
-        { id: 2, content: "Slide 2" },
-        { id: 3, content: "Slide 3" },
-        { id: 4, content: "Slide 4" },
-        { id: 5, content: "Slide 5" },
-        { id: 6, content: "Slide 6" },
-    ];
-
-    const movies = [
-        {
-            id: 1,
-            title: "Last Paradise",
-            image: "images/film1.png",
-            episodes: 20,
-            synopsis:
-                "A breathtaking journey to the Last Paradise awaits as characters embark on an epic adventure.",
-        },
-        {
-            id: 2,
-            title: "Last Paradise",
-            image: "images/film1.png",
-            episodes: 20,
-            synopsis:
-                "Discover the enchanting world of the Last Paradise in this thrilling and captivating series.",
-        },
-        {
-            id: 3,
-            title: "Last Paradise",
-            image: "images/film1.png",
-            episodes: 20,
-            synopsis:
-                "Experience the magic and wonders of the Last Paradise as heroes face challenges and mysteries.",
-        },
-        {
-            id: 4,
-            title: "Bjie Bet",
-            image: "images/film1.png",
-            episodes: 20,
-            synopsis:
-                "Join the epic journey of Bjie Bet as they navigate through an exciting and action-packed adventure.",
-        },
-        {
-            id: 5,
-            title: "Last Paradise",
-            image: "images/film1.png",
-            episodes: 20,
-            synopsis:
-                "Embark on a thrilling odyssey to the Last Paradise filled with drama, romance, and excitement.",
-        },
-        {
-            id: 6,
-            title: "Last Paradise",
-            image: "images/film1.png",
-            episodes: 20,
-            synopsis:
-                "Witness the beauty and danger of the Last Paradise as characters strive for survival and discovery.",
-        },
-        {
-            id: 7,
-            title: "Last Paradise",
-            image: "images/film1.png",
-            episodes: 20,
-            synopsis:
-                "Uncover the secrets and challenges of the Last Paradise in this unforgettable and mesmerizing tale.",
-        },
-        {
-            id: 8,
-            title: "Last Paradise",
-            image: "images/film1.png",
-            episodes: 20,
-            synopsis:
-                "Explore the mysteries and wonders of the Last Paradise in this spellbinding and epic journey.",
-        },
-        {
-            id: 1,
-            title: "Last Paradise",
-            image: "images/film1.png",
-            episodes: 20,
-            synopsis:
-                "A breathtaking journey to the Last Paradise awaits as characters embark on an epic adventure.",
-        },
-        {
-            id: 2,
-            title: "Last Paradise",
-            image: "images/film1.png",
-            episodes: 20,
-            synopsis:
-                "Discover the enchanting world of the Last Paradise in this thrilling and captivating series.",
-        },
-        {
-            id: 3,
-            title: "Last Paradise",
-            image: "images/film1.png",
-            episodes: 20,
-            synopsis:
-                "Experience the magic and wonders of the Last Paradise as heroes face challenges and mysteries.",
-        },
-        {
-            id: 4,
-            title: "Bjie Bet",
-            image: "images/film1.png",
-            episodes: 20,
-            synopsis:
-                "Join the epic journey of Bjie Bet as they navigate through an exciting and action-packed adventure.",
-        },
-        {
-            id: 5,
-            title: "Last Paradise",
-            image: "images/film1.png",
-            episodes: 20,
-            synopsis:
-                "Embark on a thrilling odyssey to the Last Paradise filled with drama, romance, and excitement.",
-        },
-        {
-            id: 6,
-            title: "Last Paradise",
-            image: "images/film1.png",
-            episodes: 20,
-            synopsis:
-                "Witness the beauty and danger of the Last Paradise as characters strive for survival and discovery.",
-        },
-        {
-            id: 7,
-            title: "Last Paradise",
-            image: "images/film1.png",
-            episodes: 20,
-            synopsis:
-                "Uncover the secrets and challenges of the Last Paradise in this unforgettable and mesmerizing tale.",
-        },
-        {
-            id: 8,
-            title: "Last Paradise",
-            image: "images/film1.png",
-            episodes: 20,
-            synopsis:
-                "Explore the mysteries and wonders of the Last Paradise in this spellbinding and epic journey.",
-        },
-    ];
     return (
         <div className="container-xl bg-[#111319] h-auto  ">
             <div className="relative z-20 xxl:-mt-28 xl:-mt-28 transition-all duration-300 xxl:px-12 xl:px-12 lg:px-7 md:px-3 sm:px-5">
@@ -354,12 +239,19 @@ const TopMovieListCard = ({ category, popularMovies }) => {
                                                         </h1>
                                                     </div>
                                                     <div className="content-center text-white">
-                                                        <h1 className="text-[11px] font-medium mb-4 bg-white bg-opacity-10 inline p-[2px] rounded-[2px] mr-1">
-                                                            Aksi
-                                                        </h1>
-                                                        <h1 className="text-[11px] font-medium mb-4 bg-white bg-opacity-10 inline p-[2px] rounded-[2px] mr-1">
-                                                            Komedi
-                                                        </h1>
+                                                        {movie.genre_ids.map(
+                                                            (genre, index) => (
+                                                                <h1
+                                                                    className="text-[11px] font-medium mb-4 bg-white bg-opacity-10 inline p-[2px] rounded-[2px] mr-1"
+                                                                    key={index}
+                                                                >
+                                                                    {genreNames[
+                                                                        genre
+                                                                    ] ||
+                                                                        "Unknown Genre"}
+                                                                </h1>
+                                                            )
+                                                        )}
                                                     </div>
                                                     <p className="mb-3 mt-3 font-small text-white text-[12px]">
                                                         {truncateWords(

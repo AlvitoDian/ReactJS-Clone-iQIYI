@@ -1,9 +1,11 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useContext } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { MovieContext } from "../Contexts/MovieContext";
 
-const AllStarProfile = ({ popularActors }) => {
+const AllStarProfile = () => {
+    const { popularActors } = useContext(MovieContext);
     const [currentSlide, setCurrentSlide] = useState(0);
     const [prevArrowVisible, setPrevArrowVisible] = useState(false);
     const sliderRef = useRef(null);
@@ -171,7 +173,7 @@ const AllStarProfile = ({ popularActors }) => {
                             {actors.map((actor) => (
                                 <a
                                     key={actor.id}
-                                    href="/"
+                                    href={`/actor/${actor.id}`}
                                     className="flex flex-col mr-3 w-[210px] md:w-[140px] sm:w-[111px] h-auto transition-all duration-300 xxl:mb-2 xl:mb-2 relative py-10 z-10 hover:z-50"
                                 >
                                     <div

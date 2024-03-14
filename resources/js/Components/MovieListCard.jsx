@@ -1,13 +1,37 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useContext } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { MovieContext } from "../Contexts/MovieContext";
 
-const MovieListCard = ({ category, nowPlayingMovies }) => {
+const MovieListCard = ({ category }) => {
+    const { nowPlayingMovies } = useContext(MovieContext);
     const [currentSlide, setCurrentSlide] = useState(0);
     const [prevArrowVisible, setPrevArrowVisible] = useState(false);
     const [isModalVisible, setModalVisible] = useState(false);
     const sliderRef = useRef(null);
+
+    const genreNames = {
+        28: "Action",
+        12: "Adventure",
+        16: "Animation",
+        35: "Comedy",
+        80: "Crime",
+        99: "Documentary",
+        18: "Drama",
+        10751: "Family",
+        14: "Fantasy",
+        36: "History",
+        27: "Horror",
+        10402: "Music",
+        9648: "Mystery",
+        10749: "Romance",
+        878: "Science Fiction",
+        10770: "TV Movie",
+        53: "Thriller",
+        10752: "War",
+        37: "Western",
+    };
 
     const [nowMovies, setNowMovies] = useState(nowPlayingMovies);
 
@@ -213,12 +237,19 @@ const MovieListCard = ({ category, nowPlayingMovies }) => {
                                                         </h1>
                                                     </div>
                                                     <div className="content-center text-white">
-                                                        <h1 className="text-[11px] font-medium mb-4 bg-white bg-opacity-10 inline p-[2px] rounded-[2px] mr-1">
-                                                            Aksi
-                                                        </h1>
-                                                        <h1 className="text-[11px] font-medium mb-4 bg-white bg-opacity-10 inline p-[2px] rounded-[2px] mr-1">
-                                                            Komedi
-                                                        </h1>
+                                                        {movie.genre_ids.map(
+                                                            (genre, index) => (
+                                                                <h1
+                                                                    className="text-[11px] font-medium mb-4 bg-white bg-opacity-10 inline p-[2px] rounded-[2px] mr-1"
+                                                                    key={index}
+                                                                >
+                                                                    {genreNames[
+                                                                        genre
+                                                                    ] ||
+                                                                        "Unknown Genre"}
+                                                                </h1>
+                                                            )
+                                                        )}
                                                     </div>
                                                     <p className="mb-3 mt-3 font-small text-white text-[12px]">
                                                         {truncateWords(
