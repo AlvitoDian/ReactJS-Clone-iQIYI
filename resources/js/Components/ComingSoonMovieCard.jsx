@@ -1,4 +1,4 @@
-import React, { useState, useRef, useContext } from "react";
+import React, { useState, useRef, useContext, useEffect } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -13,6 +13,26 @@ const ComingSoonMovieCard = () => {
     const [prevArrowVisible, setPrevArrowVisible] = useState(false);
     const [isModalVisible, setModalVisible] = useState(false);
     const sliderRef = useRef(null);
+
+    const [isMobile, setIsMobile] = useState(false);
+
+    function truncateChars(str, maxChars) {
+        if (str.length > maxChars) {
+            return str.slice(0, maxChars) + "...";
+        }
+        return str;
+    }
+
+    useEffect(() => {
+        const handleResize = () => {
+            setIsMobile(window.innerWidth < 768);
+        };
+
+        handleResize();
+        window.addEventListener("resize", handleResize);
+
+        return () => window.removeEventListener("resize", handleResize);
+    }, []);
 
     const genreNames = {
         28: "Action",
@@ -103,12 +123,12 @@ const ComingSoonMovieCard = () => {
                 },
             },
             {
-                breakpoint: 720,
+                breakpoint: 768,
                 settings: {
                     slidesToShow: 3,
                     slidesToScroll: 3,
                     initialSlide: 3,
-                    swipe: false,
+                    swipe: true,
                     dots: false,
                 },
             },
@@ -119,7 +139,7 @@ const ComingSoonMovieCard = () => {
                     slidesToScroll: 3,
                     initialSlide: 3,
                     arrows: false,
-                    swipe: false,
+                    swipe: true,
                     dots: false,
                 },
             },
@@ -127,12 +147,12 @@ const ComingSoonMovieCard = () => {
     };
 
     return (
-        <div className="container-xl bg-[#111319] h-auto  ">
+        <div className="container-xl bg-[#111319] h-auto -mt-10">
             <div className="relative z-20 transition-all duration-300 xxl:px-12 xl:px-12 lg:px-7 md:px-3 sm:px-5">
                 <div className="flex flex-col ">
                     {/* Header */}
                     <div className="z-[100]">
-                        <h1 className="text-white mt-9 font-bold text-3xl py-2 md:text-sm sm:text-sm -mb-10">
+                        <h1 className="text-white mt-9 font-bold text-3xl py-2 md:text-sm sm:text-sm -mb-3">
                             Segera Tayang
                         </h1>
                     </div>
@@ -184,9 +204,11 @@ const ComingSoonMovieCard = () => {
                                     </div>
                                     {/* Timeline Soon */}
                                     <a
-                                        href="/"
+                                        href={`/movie/${movie.id}`}
                                         onMouseEnter={() => {
-                                            handleMouseEnter(movie.id);
+                                            if (!isMobile) {
+                                                handleMouseEnter(movie.id);
+                                            }
                                         }}
                                         onMouseLeave={handleMouseLeave}
                                     >
@@ -208,22 +230,14 @@ const ComingSoonMovieCard = () => {
                                                     className="md:mr-4 rounded-md w-full object-cover xxl:h-[300px] xl:h-[300px] lg:h-[300px] md:h-[300px] sm:h-[170px]"
                                                 />
                                             </div>
-                                            {/*   <div className="absolute text-gray-200 font-bold p-2 text-md md:text-base sm:text-xs z-[50] flex items-center justify-center">
-                                                <div>&#9733;</div>
-                                                <span className="ml-[3px]">
-                                                    {movie.vote_average.toFixed(
-                                                        1
-                                                    )}
-                                                </span>
-                                            </div> */}
                                         </div>
                                         <span className="mt-1 text-white font-bold text-lg md:text-base sm:text-xs">
-                                            {movie.title}
+                                            {truncateChars(movie.title, 21)}
                                         </span>
 
                                         {isModalVisible === movie.id && (
                                             <div className="flex content-center items-center transition-transform duration-300 transform scale-100 hover:scale-125 absolute top-[110px] shadow z-50">
-                                                <div className="max-w-xs bg-[#1A1C22] rounded h-[300px]">
+                                                <div className="max-w-xs bg-[#1A1C22] rounded h-auto">
                                                     <div className="relative flex items-end justify-end">
                                                         <img
                                                             className="rounded-t h-[130px] w-full object-cover"

@@ -99,60 +99,8 @@ const AllStarProfile = () => {
         ],
     };
 
-    const stars = [
-        {
-            id: 1,
-            name: "Tom Hanks",
-            image: "https://www.w3schools.com/howto/img_avatar.png",
-        },
-        {
-            id: 2,
-            name: "Meryl Streep",
-            image: "https://www.w3schools.com/howto/img_avatar.png",
-        },
-        {
-            id: 3,
-            name: "Leonardo DiCaprio",
-            image: "https://www.w3schools.com/howto/img_avatar.png",
-        },
-        {
-            id: 4,
-            name: "Scarlett Johansson",
-            image: "https://www.w3schools.com/howto/img_avatar.png",
-        },
-        {
-            id: 5,
-            name: "Will Smith",
-            image: "https://www.w3schools.com/howto/img_avatar.png",
-        },
-        {
-            id: 6,
-            name: "Jennifer Lawrence",
-            image: "https://www.w3schools.com/howto/img_avatar.png",
-        },
-        {
-            id: 7,
-            name: "Denzel Washington",
-            image: "https://www.w3schools.com/howto/img_avatar.png",
-        },
-        {
-            id: 8,
-            name: "Emma Stone",
-            image: "https://www.w3schools.com/howto/img_avatar.png",
-        },
-        {
-            id: 9,
-            name: "Brad Pitt",
-            image: "https://www.w3schools.com/howto/img_avatar.png",
-        },
-        {
-            id: 10,
-            name: "Charlize Theron",
-            image: "https://www.w3schools.com/howto/img_avatar.png",
-        },
-    ];
     return (
-        <div className="container-xl bg-[#111319] h-auto  ">
+        <div className="container-xl bg-[#111319] h-auto">
             <div className="relative z-20 transition-all duration-300 xxl:px-12 xl:px-12 lg:px-7 md:px-3 sm:px-5">
                 <div className="flex flex-col ">
                     {/* Header */}

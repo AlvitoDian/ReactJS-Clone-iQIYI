@@ -63,6 +63,39 @@ class HomeController extends Controller
             $movie['backdrop_url'] = $backdropBaseUrl . $movie['backdrop_path'];
         }
 
+        //? Get Top Movies
+        $responseTopMovies = $client->get(env('TMDB_BASE_URL') . 'movie/top_rated', [
+            'query' => [
+                'api_key' => env('TMDB_API_KEY'),
+            ],
+        ]);
+
+        $topMovies = json_decode($responseTopMovies->getBody(), true)['results'];
+
+        foreach ($topMovies as &$movie) {
+            $movie['poster_url'] = $posterBaseUrl . $movie['poster_path'];
+            $movie['backdrop_url'] = $backdropBaseUrl . $movie['backdrop_path'];
+        }
+
+        $topMovies = array_slice($topMovies, 0, 9);
+
+        //? Get Animation Movies
+        $responseAnimationMovies = $client->get(env('TMDB_BASE_URL') . 'discover/movie', [
+            'query' => [
+                'api_key' => env('TMDB_API_KEY'),
+                'with_genres' => 16, 
+            ],
+        ]);
+
+        $animationMovies = json_decode($responseAnimationMovies->getBody(), true)['results'];
+
+        foreach ($animationMovies as &$movie) {
+            $movie['poster_url'] = $posterBaseUrl . $movie['poster_path'];
+            $movie['backdrop_url'] = $backdropBaseUrl . $movie['backdrop_path'];
+        }
+
+        $animationMovies = array_slice($animationMovies, 0, 9);
+
         //? Get Popular Actor
         $responsePopularActor = $client->get(env('TMDB_BASE_URL') . 'person/popular', [
             'query' => [
@@ -82,6 +115,8 @@ class HomeController extends Controller
             'nowPlayingMovies' => $nowPlayingMovies,
             'popularActors' => $popularActors,
             'upComingMovies' => $upComingMovies,
+            'topMovies' => $topMovies,
+            'animationMovies' => $animationMovies
         ]);
     }
 
@@ -118,6 +153,7 @@ class HomeController extends Controller
         ]);
 
         $movie = json_decode($responseMovie->getBody(), true);
+        $movie['backdrop_url'] = $backdropBaseUrl . $movie['backdrop_path'];
 
         //? Get Recom/Popular Movies
         $responsePopular = $client->get(env('TMDB_BASE_URL') . 'movie/popular', [
@@ -130,9 +166,9 @@ class HomeController extends Controller
 
         $popularMovies = array_slice($popularMovies, 0, 16);
 
-        foreach ($popularMovies as &$movie) {
-            $movie['poster_url'] = $posterBaseUrl . $movie['poster_path'];
-            $movie['backdrop_url'] = $backdropBaseUrl . $movie['backdrop_path'];
+        foreach ($popularMovies as &$popularMovie) {
+            $popularMovie['poster_url'] = $posterBaseUrl . $popularMovie['poster_path'];
+            $popularMovie['backdrop_url'] = $backdropBaseUrl . $popularMovie['backdrop_path'];
         }
 
         //? Get Actors on Current Movie
@@ -163,6 +199,8 @@ class HomeController extends Controller
 
             $cast[] = $actor;
         }
+
+        $cast = array_slice($cast, 0, 15);
 
         $movie['cast'] = $cast;
 
@@ -211,6 +249,43 @@ class HomeController extends Controller
         return Inertia::render('SingleActor', [
             'actor' => $actor,
             'portoActor' => $portoActor,
+        ]);
+    }
+
+    public function filterMovies(Request $request)
+    {
+        $posterBaseUrl = env('TMDB_POSTER_URL');
+        $backdropBaseUrl = env('TMDB_BACKDROP_URL');
+
+        $client = new Client();
+
+        //? Catch Param
+        $category = $request->query('category');
+        $search = $request->query('search');
+
+        //? Get Filtered Movies
+        $responseFilter = $client->get(env('TMDB_BASE_URL') . 'search/movie', [
+            'query' => [
+                'api_key' => env('TMDB_API_KEY'),
+                'query' => $search,
+                'with_genres' => $category,
+                'page' => '1',
+                'sort_by' => 'popularity.desc',
+            ],
+        ]);
+
+        $filteredMovies = json_decode($responseFilter->getBody(), true)['results'];
+
+        foreach ($filteredMovies as &$movie) {
+            $movie['poster_url'] = $posterBaseUrl . $movie['poster_path'];
+            $movie['backdrop_url'] = $backdropBaseUrl . $movie['backdrop_path'];
+        }
+
+        $filteredMovies = array_slice($filteredMovies, 0, 10);
+
+        //? Render Page
+        return Inertia::render('FilterMovies', [
+            'filteredMovies' => $filteredMovies,
         ]);
     }
 

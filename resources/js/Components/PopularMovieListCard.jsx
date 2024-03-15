@@ -4,23 +4,14 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { MovieContext } from "../Contexts/MovieContext";
 
-const TopMovieListCard = ({ category }) => {
-    const { popularMovies } = useContext(MovieContext);
+const PopularMovieListCard = ({ category }) => {
+    const { topMovies } = useContext(MovieContext);
     const [currentSlide, setCurrentSlide] = useState(0);
     const [prevArrowVisible, setPrevArrowVisible] = useState(false);
     const [isModalVisible, setModalVisible] = useState(false);
     const sliderRef = useRef(null);
 
-    const [moviesPopular, setMoviesPopular] = useState(popularMovies);
-
     const [isMobile, setIsMobile] = useState(false);
-
-    function truncateChars(str, maxChars) {
-        if (str.length > maxChars) {
-            return str.slice(0, maxChars) + "...";
-        }
-        return str;
-    }
 
     useEffect(() => {
         const handleResize = () => {
@@ -32,6 +23,13 @@ const TopMovieListCard = ({ category }) => {
 
         return () => window.removeEventListener("resize", handleResize);
     }, []);
+
+    function truncateChars(str, maxChars) {
+        if (str.length > maxChars) {
+            return str.slice(0, maxChars) + "...";
+        }
+        return str;
+    }
 
     const genreNames = {
         28: "Action",
@@ -54,6 +52,8 @@ const TopMovieListCard = ({ category }) => {
         10752: "War",
         37: "Western",
     };
+
+    const [nowMovies, setNowMovies] = useState(topMovies);
 
     function truncateWords(str, words) {
         return str.split(" ").slice(0, words).join(" ");
@@ -105,8 +105,7 @@ const TopMovieListCard = ({ category }) => {
                     slidesToShow: 5,
                     slidesToScroll: 5,
                     infinite: true,
-                    dots: true,
-                    /* swipe: false, */
+                    swipe: false,
                     dots: false,
                 },
             },
@@ -116,18 +115,17 @@ const TopMovieListCard = ({ category }) => {
                     slidesToShow: 3,
                     slidesToScroll: 3,
                     infinite: true,
-                    dots: true,
-                    /* swipe: false, */
+                    swipe: false,
                     dots: false,
                 },
             },
             {
-                breakpoint: 720,
+                breakpoint: 768,
                 settings: {
                     slidesToShow: 3,
                     slidesToScroll: 3,
                     initialSlide: 3,
-                    /* swipe: false, */
+                    swipe: true,
                     dots: false,
                 },
             },
@@ -138,7 +136,7 @@ const TopMovieListCard = ({ category }) => {
                     slidesToScroll: 3,
                     initialSlide: 3,
                     arrows: false,
-                    /* swipe: false, */
+                    swipe: true,
                     dots: false,
                 },
             },
@@ -146,11 +144,11 @@ const TopMovieListCard = ({ category }) => {
     };
 
     return (
-        <div className="container-xl bg-[#111319] h-auto  ">
-            <div className="relative z-20 xxl:-mt-28 xl:-mt-28 transition-all duration-300 xxl:px-12 xl:px-12 lg:px-7 md:px-3 sm:px-5">
+        <div className="container-xl bg-[#111319] h-auto -mt-10">
+            <div className="relative z-20 transition-all duration-300 xxl:px-12 xl:px-12 lg:px-7 md:px-3 sm:px-5">
                 <div className="flex flex-col ">
                     {/* Header */}
-                    <div className="z-[50]">
+                    <div className="z-[100]">
                         <h1 className="text-white font-bold text-3xl py-2 md:text-sm sm:text-sm -mb-10">
                             {category}
                         </h1>
@@ -165,7 +163,7 @@ const TopMovieListCard = ({ category }) => {
                             beforeChange={handleBeforeChange}
                             afterChange={handleAfterChange}
                         >
-                            {moviesPopular.map((movie, index) => (
+                            {nowMovies.map((movie, index) => (
                                 <a
                                     key={index}
                                     href={`/movie/${movie.id}`}
@@ -180,9 +178,9 @@ const TopMovieListCard = ({ category }) => {
                                     <div className="flex items-end">
                                         <div className="relative">
                                             <div
-                                                className="absolute inset-0"
+                                                className="absolute inset-0 rounded-md"
                                                 style={{
-                                                    backgroundImage: `url('/images/overlay_single_mobile.png')`,
+                                                    backgroundImage: `url('/images/topmovieoverlay${index}.png')`,
                                                     backgroundSize: "100% 100%",
                                                     opacity: 0.7,
                                                     zIndex: 1,
@@ -194,16 +192,25 @@ const TopMovieListCard = ({ category }) => {
                                                 className="md:mr-4 rounded-md w-full object-cover xxl:h-[300px] xl:h-[300px] lg:h-[300px] md:h-[300px] sm:h-[170px]"
                                             />
                                         </div>
-                                        <div className="absolute text-gray-200 font-bold p-2 text-md md:text-base sm:text-xs z-[50] flex items-center justify-center">
-                                            {/* Full {movie.episodes} episode */}
-                                            <div>&#9733;</div>
+                                        <div className="absolute text-gray-200 font-bold p-2 text-[14px] md:text-base sm:text-xs z-[50] flex items-center justify-center">
                                             <span className="ml-[3px]">
-                                                {movie.vote_average.toFixed(1)}
+                                                {truncateChars(movie.title, 21)}
+                                            </span>
+                                        </div>
+                                        <div className="absolute text-gray-200 font-bold p-2 xxl:text-[36px] xl:text-[24px] lg:text-[24px] md:text-base sm:text-xs z-[50] flex items-center justify-center pb-7">
+                                            <span
+                                                className="ml-[3px]"
+                                                style={{
+                                                    fontFamily:
+                                                        "Times New Roman",
+                                                }}
+                                            >
+                                                TOP {index + 1}
                                             </span>
                                         </div>
                                     </div>
                                     <span className="mt-1 text-white font-bold text-lg md:text-base sm:text-xs">
-                                        {truncateChars(movie.title, 21)}
+                                        {movie.title}
                                     </span>
                                     {isModalVisible === movie.id && (
                                         <div className="flex content-center items-center transition-transform duration-300 transform scale-100 hover:scale-125 absolute top-10 shadow z-[600]">
@@ -232,7 +239,7 @@ const TopMovieListCard = ({ category }) => {
                                                     {/* Tombol Play dan Bookmark */}
                                                 </div>
 
-                                                <div className="p-2">
+                                                <div className="px-2 pt-2">
                                                     <div>
                                                         <h5 className="text-md font-bold text-white">
                                                             {movie.title}
@@ -275,7 +282,7 @@ const TopMovieListCard = ({ category }) => {
                                                             )
                                                         )}
                                                     </div>
-                                                    <p className="mb-3 mt-3 font-small text-white text-[12px]">
+                                                    <p className="mt-3 font-small text-white text-[12px] z-10">
                                                         {truncateWords(
                                                             movie.overview,
                                                             15
@@ -283,6 +290,15 @@ const TopMovieListCard = ({ category }) => {
                                                         ...
                                                     </p>
                                                 </div>
+                                                <h5
+                                                    className="left-0 text-4xl font-bold text-white overflow-hidden opacity-20 z-0 -mb-2"
+                                                    style={{
+                                                        fontFamily:
+                                                            "Times New Roman",
+                                                    }}
+                                                >
+                                                    TOP {index + 1}
+                                                </h5>
                                             </div>
                                         </div>
                                     )}
@@ -317,4 +333,4 @@ const TopMovieListCard = ({ category }) => {
     );
 };
 
-export default TopMovieListCard;
+export default PopularMovieListCard;

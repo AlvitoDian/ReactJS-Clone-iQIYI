@@ -5,6 +5,19 @@ import { SingleMovieContext } from "../Contexts/SingleMovieContext";
 function BannerMovie() {
     const { movie, posterUrl, popularMovies } = useContext(SingleMovieContext);
 
+    function truncateChars(str, maxChars) {
+        if (str.length > maxChars) {
+            return str.slice(0, maxChars) + "...";
+        }
+        return str;
+    }
+
+    const [showFullDescription, setShowFullDescription] = useState(false);
+
+    const toggleDescription = () => {
+        setShowFullDescription(!showFullDescription);
+    };
+
     const genreNames = {
         28: "Action",
         12: "Adventure",
@@ -55,7 +68,7 @@ function BannerMovie() {
                 </div>
                 {/* Banner Movie */}
                 {/* info Movie */}
-                <div className="mt-32 sm:mt-4 flex flex-col gap-3 pr-5">
+                <div className="mt-32 sm:mt-4 flex flex-col gap-3 w-full xxl:pr-20 xl:pr-20 lg:pr-20 md:pr-5">
                     {/* Judul */}
                     <h1 className="text-[40px] text-white font-extrabold">
                         {movie.title}
@@ -100,12 +113,12 @@ function BannerMovie() {
 
                     {/* Genre */}
                     <div className="content-center sm:hidden md:hidden text-white">
-                        {movie.genre_ids.map((genre, index) => (
+                        {movie.genres.map((genre, index) => (
                             <span
                                 className="text-[12px] font-medium mb-4 bg-white bg-opacity-10 inline py-[3px] rounded mr-[10px] px-[4px]"
                                 key={index}
                             >
-                                {genreNames[genre] || "Unknown Genre"}
+                                {genre.name}
                             </span>
                         ))}
                     </div>
@@ -115,18 +128,63 @@ function BannerMovie() {
                     <div>
                         <a
                             href="/"
-                            className="bg-[#F2BF83] px-[17px] py-[7px] text-black rounded-[4px] mr-3 hover:bg-[#f0cca3] font-bold text-[14px] flex items-center justify-center w-[400px] md:w-[100%] sm:w-[100%]"
+                            className="bg-[#F2BF83] px-[17px] py-[7px] text-black rounded-[4px] mr-3 hover:bg-[#f0cca3] font-bold text-[14px] flex items-center justify-center w-[400px] md:w-[100%] sm:w-[100%] sm:hidden md:hidden"
                         >
                             <i className="fas fa-crown text-[14px] mr-2"></i>
                             VIP Standard hanya Rp19,000 untuk bulan pertama
                         </a>
+                        <a
+                            href="/"
+                            className="bg-[#F2BF83] px-[17px] py-[7px] text-black rounded-[4px] mr-3 hover:bg-[#f0cca3] font-bold text-[14px] flex items-center justify-center w-[400px] md:w-[100%] sm:w-[100%] xxl:hidden xl:hidden lg:hidden"
+                        >
+                            <i className="fas fa-crown text-[14px] mr-2"></i>
+                            VIP Standard hanya Rp19,000 untuk ...
+                        </a>
                     </div>
                     {/* VIP Button */}
 
+                    {/* Pemeran */}
+                    <h4 className="text-[14px] text-white font-normal -mb-[6px]">
+                        <span className="opacity-50">Pemeran: </span>
+                        {movie.cast.slice(0, 5).map((actor, index) => (
+                            <span key={index}>
+                                {actor.name}
+                                {index !== 4 ? ", " : ""}
+                            </span>
+                        ))}
+                    </h4>
+                    {/* Pemeran */}
+
                     {/* Deskripsi */}
-                    <h4 className="text-[13px] text-white font-normal">
-                        <span className="opacity-50">Deskripsi: </span>
-                        {movie.overview}
+                    <h4 className="text-[14px] text-white font-normal relative">
+                        <div>
+                            <span className="opacity-50">Deskripsi: </span>
+                            {showFullDescription
+                                ? movie.overview
+                                : truncateChars(movie.overview, 250)}
+                        </div>
+
+                        <span
+                            className={`absolute font-bold right-0  text-[#1CC749] cursor-pointer bg-[#111319]  ${
+                                showFullDescription ? "" : "bottom-0"
+                            } `}
+                            style={{
+                                filter: "drop-shadow(-21px 0px 5px #111319)",
+                            }}
+                            onClick={toggleDescription}
+                        >
+                            {showFullDescription ? (
+                                <>
+                                    Tampilkan Lebih Sedikit
+                                    <i className="pl-1 fas fa-chevron-up text-xs"></i>
+                                </>
+                            ) : (
+                                <>
+                                    Tampilkan Lebih Banyak
+                                    <i className="pl-1 fas fa-chevron-down text-xs"></i>
+                                </>
+                            )}
+                        </span>
                     </h4>
                     {/* Deskripsi */}
 
@@ -160,6 +218,7 @@ function BannerMovie() {
             </div>
             <MovieInfo
                 actorCredits={movie.cast}
+                imdbId={movie.imdb_id}
                 posterUrl={posterUrl}
                 popularMovies={popularMovies}
             />

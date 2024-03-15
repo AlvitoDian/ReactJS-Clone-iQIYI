@@ -4,7 +4,7 @@ import Footer from "../Components/Footer";
 import HeaderActor from "../Components/HeaderActor";
 import { ActorContext } from "../Contexts/ActorContext";
 
-const Home = ({ actor, portoActor }) => {
+const SingleActor = ({ actor, portoActor }) => {
     return (
         <>
             <Navbar />
@@ -16,4 +16,4 @@ const Home = ({ actor, portoActor }) => {
     );
 };
 
-export default Home;
+export default SingleActor;

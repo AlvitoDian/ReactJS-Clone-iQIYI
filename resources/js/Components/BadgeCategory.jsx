@@ -1,5 +1,4 @@
 import React, { useContext } from "react";
-import { MovieContext } from "../Contexts/MovieContext";
 
 function BadgeCategory() {
     const category = [
@@ -74,7 +73,7 @@ function BadgeCategory() {
     ];
 
     return (
-        <div className="container-xl ">
+        <div className="container-xl mb-10 ">
             <div className="h-auto xxl:overflow-x-auto xl:overflow-x-auto lg:overflow-x-auto md:overflow-x-auto sm:overflow-x-auto">
                 <div className="relative flex px-12 sm:px-2 md:px-2">
                     {category.map((cat) => (

@@ -8,12 +8,15 @@ import ComingSoonMovieCard from "../Components/ComingSoonMovieCard";
 import AllStarProfile from "../Components/AllStarProfile";
 import Footer from "../Components/Footer";
 import { MovieContext } from "../Contexts/MovieContext";
+import PopularMovieListCard from "../Components/PopularMovieListCard";
 
 const Home = ({
     popularMovies,
     nowPlayingMovies,
     popularActors,
     upComingMovies,
+    topMovies,
+    animationMovies,
 }) => {
     const randomPopularMovies = popularMovies
         .sort(() => Math.random() - 0.5)
@@ -29,16 +32,20 @@ const Home = ({
                     nowPlayingMovies,
                     popularActors,
                     upComingMovies,
+                    topMovies,
+                    animationMovies,
                 }}
             >
                 <TopMovieListCard category={"Rekomendasi Populer"} />
                 <BadgeCategory />
-                <MovieListCard category={"Limited Time Free"} />
-                <MovieListCard category={"Rekomendasi Untuk Anda"} />
-                <MovieListCard category={"Popular"} />
+                <MovieListCard
+                    category={"Limited Time Free"}
+                    movies={nowPlayingMovies}
+                />
+                <PopularMovieListCard category={"Popular"} />
                 <ComingSoonMovieCard />
                 <AllStarProfile />
-                <MovieListCard category={"Anime Jepang"} />
+                <MovieListCard category={"Animasi"} movies={animationMovies} />
             </MovieContext.Provider>
             <Footer />
         </>

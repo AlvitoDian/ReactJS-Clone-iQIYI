@@ -6,6 +6,25 @@ const Navbar = () => {
     const [isSidebarOpen, setSidebarOpen] = useState(false);
     const [isNavbarTransparent, setIsNavbarTransparent] = useState(true);
 
+    const [searchTerm, setSearchTerm] = useState("");
+
+    const handleSearchChange = (event) => {
+        setSearchTerm(event.target.value);
+    };
+
+    const handleKeyPress = (event) => {
+        if (event.key === "Enter") {
+            handleSearch();
+        }
+    };
+
+    const handleSearch = () => {
+        const searchUrl = `/filter-movies?search=${encodeURIComponent(
+            searchTerm
+        )}`;
+        window.location.href = searchUrl;
+    };
+
     const toggleSidebar = () => {
         setSidebarOpen(!isSidebarOpen);
     };
@@ -34,7 +53,7 @@ const Navbar = () => {
 
     return (
         <nav
-            className={`fixed w-full transition-all duration-1000 ${
+            className={`z-[999] fixed w-full transition-all duration-1000 ${
                 isNavbarTransparent ? "bg-transparent" : "bg-navbar"
             } xxl:py-2 xl:py-2 z-50`}
         >
@@ -60,34 +79,34 @@ const Navbar = () => {
                         />
                     </a>
                     <a
-                        href="/"
+                        href={`/filter-movies?category=28`}
                         className="text-white font-bold pr-[37px] hover:text-green-hover xxl:inline-block xl:hidden lg:hidden md:hidden sm:hidden"
                     >
                         Rekomendasi
                     </a>
                     <a
-                        href="/"
+                        href={`/filter-movies?category=18`}
                         className="text-gray-navbar pr-[37px] font-medium hover:text-green-hover hidden xl:inline-block xxl:inline-block md:hidden sm:hidden"
                     >
                         Drama
                     </a>
                     <a
-                        href="/"
+                        href={`/filter-movies?category=28`}
                         className="text-gray-navbar pr-[37px] font-medium hover:text-green-hover hidden xxl:inline-block md:hidden sm:hidden"
                     >
                         K-Drama
                     </a>
                     <a
-                        href="/"
+                        href={`/filter-movies?category=28`}
                         className="text-gray-navbar pr-[37px] font-medium hover:text-green-hover hidden xxl:inline-block md:hidden sm:hidden"
                     >
                         Film
                     </a>
                     <a
-                        href="/"
+                        href={`/filter-movies?category=16`}
                         className="text-gray-navbar pr-[37px] font-medium hover:text-green-hover hidden xxl:inline-block md:hidden sm:hidden"
                     >
-                        Anime
+                        Animasi
                     </a>
                     <div
                         className="relative inline-block flex justify-center md:hidden sm:hidden"
@@ -111,40 +130,40 @@ const Navbar = () => {
                                 <div className="absolute z-12 bg-navbarhoverbg w-4 h-4 rotate-45 mt-1 border-l border-t border-zinc-800"></div>
                                 <div className="bg-navbarhoverbg mt-3 border border-zinc-800 rounded-[2px] w-[200px] flex flex-col justify-center items-center">
                                     <a
-                                        href="/"
+                                        href={`/filter-movies?category=28`}
                                         className="hover:bg-zinc-800 w-full flex justify-center hover:text-green-hover block py-4 text-gray-navbar font-medium text-sm z-20"
                                     >
                                         Rekomendasi
                                     </a>
                                     <a
-                                        href="/"
+                                        href={`/filter-movies?category=10770`}
                                         className="hover:bg-zinc-800 w-full flex justify-center hover:text-green-hover block py-4 text-gray-navbar font-medium text-sm"
                                     >
                                         Variety Show
                                     </a>
                                     <a
-                                        href="/"
+                                        href={`/filter-movies?category=28`}
                                         className="hover:bg-zinc-800 w-full flex justify-center hover:text-green-hover block py-4 text-gray-navbar font-medium text-sm"
                                     >
                                         Drama
                                     </a>
                                     <a
-                                        href="/"
+                                        href={`/filter-movies?category=28`}
                                         className="hover:bg-zinc-800 w-full flex justify-center hover:text-green-hover block py-4 text-gray-navbar font-medium text-sm"
                                     >
                                         K-Drama
                                     </a>
                                     <a
-                                        href="/"
+                                        href={`/filter-movies?category=28`}
                                         className="hover:bg-zinc-800 w-full flex justify-center hover:text-green-hover block py-4 text-gray-navbar font-medium text-sm"
                                     >
                                         Film
                                     </a>
                                     <a
-                                        href="/"
+                                        href={`/filter-movies?category=16`}
                                         className="hover:bg-zinc-800 w-full flex justify-center hover:text-green-hover block py-4 text-gray-navbar font-medium text-sm"
                                     >
-                                        Anime
+                                        Animasi
                                     </a>
                                 </div>
                             </div>
@@ -156,19 +175,23 @@ const Navbar = () => {
                     <div className="flex items-center xl:pr-[50px] xxl:pr-[50px] lg:pr-[25px]">
                         <div className="relative">
                             <input
+                                id="searchInput"
                                 type="text"
                                 placeholder="Attack on Titan..."
                                 className="bg-zinc-600 p-[6px] pl-3 rounded focus:outline-none opacity-50 text-white w-[300px] lg:w-[200px] md:p-[2px] sm:p-[2px] md:w-[190px] sm:w-[190px]"
+                                value={searchTerm}
+                                onChange={handleSearchChange}
+                                onKeyDown={handleKeyPress}
                             />
-                            <a
-                                href=""
+                            <button
                                 className="text-white hover:text-green-hover"
+                                onClick={handleSearch}
                             >
                                 <span className="absolute top-1/2 right-2 transform -translate-y-1/2 flex items-center">
                                     <div className="h-[20px] border-l border-[#808080] pr-[3px]"></div>
                                     <i className="fas fa-search text-lg pl-2"></i>
                                 </span>
-                            </a>
+                            </button>
                         </div>
                     </div>
 
@@ -240,36 +263,36 @@ const Navbar = () => {
             {/* Mobile view */}
             <div className="flex justify-between items-center text-sm xxl:hidden xl:hidden lg:hidden overflow-y-auto">
                 {/* Left Item */}
-                <div className="flex items-center py-[8px] px-[8px]">
+                <div className="flex items-center py-[8px] px-[8px] pb-3">
                     <a
-                        href="/"
+                        href={`/filter-movies?category=28`}
                         className="text-white font-bold pr-[28px] hover:text-green-hover "
                     >
                         Rekomendasi
                     </a>
                     <a
-                        href="/"
+                        href={`/filter-movies?category=28`}
                         className="text-gray-navbar pr-[28px] font-medium hover:text-green-hover "
                     >
                         Drama
                     </a>
                     <a
-                        href="/"
+                        href={`/filter-movies?category=28`}
                         className="text-gray-navbar pr-[28px] font-medium hover:text-green-hover "
                     >
                         K-Drama
                     </a>
                     <a
-                        href="/"
+                        href={`/filter-movies?category=28`}
                         className="text-gray-navbar pr-[28px] font-medium hover:text-green-hover "
                     >
                         Film
                     </a>
                     <a
-                        href="/"
+                        href={`/filter-movies?category=16`}
                         className="text-gray-navbar pr-[28px] font-medium hover:text-green-hover "
                     >
-                        Anime
+                        Animasi
                     </a>
                 </div>
             </div>

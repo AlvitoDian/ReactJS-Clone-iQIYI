@@ -1,7 +1,7 @@
 import React from "react";
 import TextTruncate from "react-text-truncate";
 
-const InfoHero = ({ rate, year, overview, genreIds }) => {
+const InfoHero = ({ rate, year, overview, genreIds, title }) => {
     function truncateWords(str, words) {
         return str.split(" ").slice(0, words).join(" ");
     }
@@ -30,6 +30,16 @@ const InfoHero = ({ rate, year, overview, genreIds }) => {
 
     return (
         <div className="flex flex-col xxl:px-14 xl:px-14 lg:px-14 sm:px-3 md:px-3 xxl:pb-[10.65rem] xl:pb-[10.65rem] text-white z-20 absolute bottom-0">
+            {/* Title */}
+            <span
+                className="font-bold mb-4 xxl:text-5xl xl:4xl lg:3xl md:hidden sm:hidden inline text-white pr-2"
+                style={{
+                    fontFamily: "Times New Roman",
+                }}
+            >
+                {title}
+            </span>
+            {/* Title */}
             {/* Badge */}
             <div className="content-center xxl:text-sm xl:text-sm lg:text-sm md:text-[10px] sm:text-[10px]">
                 <span className=" font-bold mb-4 bg-[#00C936] inline p-[5px] rounded-s-[3px] ">

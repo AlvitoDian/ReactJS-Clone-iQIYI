@@ -1,15 +1,26 @@
-import React, { useState, useRef, useContext } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { MovieContext } from "../Contexts/MovieContext";
 
-const MovieListCard = ({ category }) => {
-    const { nowPlayingMovies } = useContext(MovieContext);
+const MovieListCard = ({ category, movies }) => {
     const [currentSlide, setCurrentSlide] = useState(0);
     const [prevArrowVisible, setPrevArrowVisible] = useState(false);
     const [isModalVisible, setModalVisible] = useState(false);
     const sliderRef = useRef(null);
+
+    const [isMobile, setIsMobile] = useState(false);
+
+    useEffect(() => {
+        const handleResize = () => {
+            setIsMobile(window.innerWidth < 768);
+        };
+
+        handleResize();
+        window.addEventListener("resize", handleResize);
+
+        return () => window.removeEventListener("resize", handleResize);
+    }, []);
 
     const genreNames = {
         28: "Action",
@@ -33,7 +44,7 @@ const MovieListCard = ({ category }) => {
         37: "Western",
     };
 
-    const [nowMovies, setNowMovies] = useState(nowPlayingMovies);
+    const [nowMovies, setNowMovies] = useState(movies);
 
     function truncateWords(str, words) {
         return str.split(" ").slice(0, words).join(" ");
@@ -100,12 +111,12 @@ const MovieListCard = ({ category }) => {
                 },
             },
             {
-                breakpoint: 720,
+                breakpoint: 768,
                 settings: {
                     slidesToShow: 3,
                     slidesToScroll: 3,
                     initialSlide: 3,
-                    swipe: false,
+                    swipe: true,
                     dots: false,
                 },
             },
@@ -115,8 +126,7 @@ const MovieListCard = ({ category }) => {
                     slidesToShow: 3,
                     slidesToScroll: 3,
                     initialSlide: 3,
-                    arrows: false,
-                    swipe: false,
+                    swipe: true,
                     dots: false,
                 },
             },
@@ -124,7 +134,7 @@ const MovieListCard = ({ category }) => {
     };
 
     return (
-        <div className="container-xl bg-[#111319] h-auto  ">
+        <div className="container-xl bg-[#111319] h-auto -mt-10">
             <div className="relative z-20 transition-all duration-300 xxl:px-12 xl:px-12 lg:px-7 md:px-3 sm:px-5">
                 <div className="flex flex-col ">
                     {/* Header */}
@@ -149,7 +159,9 @@ const MovieListCard = ({ category }) => {
                                     href={`/movie/${movie.id}`}
                                     className="flex flex-col mr-3 w-[210px] md:w-[140px] sm:w-[111px] h-auto transition-all duration-300 xxl:mb-2 xl:mb-2 relative py-10 z-10 hover:z-50"
                                     onMouseEnter={() => {
-                                        handleMouseEnter(movie.id);
+                                        if (!isMobile) {
+                                            handleMouseEnter(movie.id);
+                                        }
                                     }}
                                     onMouseLeave={handleMouseLeave}
                                 >
@@ -183,7 +195,7 @@ const MovieListCard = ({ category }) => {
                                     </span>
                                     {isModalVisible === movie.id && (
                                         <div className="flex content-center items-center transition-transform duration-300 transform scale-100 hover:scale-125 absolute top-10 shadow z-[600]">
-                                            <div className="max-w-xs bg-[#1A1C22] rounded h-[300px]">
+                                            <div className="max-w-xs bg-[#1A1C22] rounded h-auto">
                                                 <div className="relative flex items-end justify-end">
                                                     <img
                                                         className="rounded-t h-[130px] w-full object-cover"

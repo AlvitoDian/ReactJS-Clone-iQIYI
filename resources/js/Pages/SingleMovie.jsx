@@ -4,7 +4,7 @@ import Footer from "../Components/Footer";
 import BannerMovie from "../Components/BannerMovie";
 import { SingleMovieContext } from "../Contexts/SingleMovieContext";
 
-const Home = ({ movie, posterUrl, popularMovies }) => {
+const SingleMovie = ({ movie, posterUrl, popularMovies }) => {
     return (
         <>
             <Navbar />
@@ -18,4 +18,4 @@ const Home = ({ movie, posterUrl, popularMovies }) => {
     );
 };
 
-export default Home;
+export default SingleMovie;

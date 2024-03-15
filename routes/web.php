@@ -20,3 +20,5 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/movie/{id}', [HomeController::class, 'show'])->name('detail-movie');
 
 Route::get('/actor/{id}', [HomeController::class, 'singleActor'])->name('detail-actor');
+
+Route::get('/filter-movies', [HomeController::class, 'filterMovies'])->name('filter-movies');
