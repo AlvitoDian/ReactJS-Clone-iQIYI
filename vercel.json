@@ -6,7 +6,8 @@
     },
     "routes": [
         { "src": "/build/(.*)", "dest": "/public/build/" },
-        { "src": "/(.*)", "dest": "/api/index.php" }
+        { "src": "/(.*)", "dest": "/api/index.php" },
+        { "src": "/images/(.*)", "dest": "/public/images/" }
     ],
     "env": {
         "APP_ENV": "production",
