@@ -3,72 +3,72 @@ import React, { useContext } from "react";
 function BadgeCategory() {
     const category = [
         {
-            id: 1,
+            id: 0,
             name: "Semua",
         },
         {
-            id: 2,
+            id: 28,
             name: "Aksi",
         },
         {
-            id: 3,
+            id: 12,
             name: "Petualangan",
         },
         {
-            id: 4,
+            id: 35,
             name: "Komedi",
         },
         {
-            id: 5,
+            id: 18,
             name: "Drama",
         },
         {
-            id: 6,
+            id: 36,
             name: "Fantasi",
         },
         {
-            id: 7,
+            id: 27,
             name: "Horor",
         },
         {
-            id: 8,
+            id: 10749,
             name: "Romantis",
         },
         {
-            id: 9,
+            id: 878,
             name: "Fiksi",
         },
         {
-            id: 10,
+            id: 53,
             name: "Thriller",
         },
         {
-            id: 11,
+            id: 9648,
             name: "Misteri",
         },
         {
-            id: 12,
+            id: 36,
             name: "Sejarah",
         },
         {
-            id: 13,
+            id: 10402,
             name: "Musikal",
         },
         {
-            id: 14,
-            name: "Olahraga",
-        },
-        {
-            id: 15,
+            id: 16,
             name: "Animasi",
         },
         {
-            id: 16,
+            id: 99,
             name: "Documenter",
         },
         {
-            id: 17,
+            id: 80,
             name: "Kriminal",
+        },
+        {
+            id: 10752,
+            name: "Perang",
         },
     ];
 
@@ -76,10 +76,10 @@ function BadgeCategory() {
         <div className="container-xl mb-10 ">
             <div className="h-auto xxl:overflow-x-auto xl:overflow-x-auto lg:overflow-x-auto md:overflow-x-auto sm:overflow-x-auto">
                 <div className="relative flex px-12 sm:px-2 md:px-2">
-                    {category.map((cat) => (
+                    {category.map((cat, index) => (
                         <a
-                            href="/"
-                            key={cat.id}
+                            href={`/filter-movies?category=${cat.id}`}
+                            key={index}
                             className="bg-[#23252B] px-[17px] py-[7px] text-[#a9a9ac] rounded-[4px] mr-3 hover:text-white font-medium text-[14px]"
                         >
                             {cat.name}

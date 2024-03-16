@@ -205,14 +205,18 @@ function FilterMovieCategoryBadge() {
                     {filterMovies.map((movie, index) => (
                         <a
                             key={index}
-                            href="/"
+                            href={`/movie/${movie.id}`}
                             className="relative text-white hover:text-[#1CC749] flex flex-col transition-all duration-300 xxl:mb-2 xl:mb-2 z-10 hover:z-50 mt-7 transform scale-100 hover:scale-105"
                             onMouseEnter={() => setShowIcon(movie.id)}
                             onMouseLeave={() => setShowIcon(false)}
                         >
                             <div className="flex items-center justify-center relative w-full h-auto">
                                 <img
-                                    src={movie.poster_url}
+                                    src={
+                                        movie.poster_url
+                                            ? movie.poster_url
+                                            : "/images/filmnull.png"
+                                    }
                                     alt={movie.title}
                                     className="md:mr-4 rounded-[1px] object-cover"
                                 />

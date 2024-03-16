@@ -242,6 +242,7 @@ class HomeController extends Controller
         $responseCredits = $client->get(env('TMDB_BASE_URL') . 'movie/' . $id . '/credits', [
             'query' => [
                 'api_key' => env('TMDB_API_KEY'),
+                'limit' => 10,
             ],
         ]);
 
@@ -294,10 +295,12 @@ class HomeController extends Controller
         $responsePorto = $client->get(env('TMDB_BASE_URL') . 'person/' . $id . '/movie_credits', [
             'query' => [
                 'api_key' => env('TMDB_API_KEY'),
+                'limit' => 5,
             ],
         ]);
 
         $porto = json_decode($responsePorto->getBody(), true);
+
 
         foreach ($porto['cast'] as $porto) {
             $porto['poster_url'] = $posterBaseUrl . $porto['poster_path'];
@@ -338,6 +341,14 @@ class HomeController extends Controller
                 'query' => [
                     'api_key' => env('TMDB_API_KEY'),
                     'with_genres' => $category,
+                    'page' => '1',
+                ],
+            ]);
+        } elseif ($category == 0) {
+            $responseFilter = $client->get(env('TMDB_BASE_URL') . 'discover/movie', [
+                'query' => [
+                    'api_key' => env('TMDB_API_KEY'),
+                    'sort_by' => 'popularity.desc',
                     'page' => '1',
                 ],
             ]);
