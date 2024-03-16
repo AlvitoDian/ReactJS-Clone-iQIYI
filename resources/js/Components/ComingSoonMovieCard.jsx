@@ -232,7 +232,12 @@ const ComingSoonMovieCard = () => {
                                             </div>
                                         </div>
                                         <span className="mt-1 text-white font-bold text-lg md:text-base sm:text-xs">
-                                            {truncateChars(movie.title, 21)}
+                                            {isMobile
+                                                ? truncateChars(movie.title, 11)
+                                                : truncateChars(
+                                                      movie.title,
+                                                      21
+                                                  )}
                                         </span>
 
                                         {isModalVisible === movie.id && (
@@ -331,7 +336,7 @@ const ComingSoonMovieCard = () => {
                                                 href="/"
                                                 className="bg-[#2D2F34] hover:bg-[#44474f] px-[17px] py-[7px] rounded-[4px] font-medium text-[14px] flex items-center"
                                             >
-                                                <i className="far fa-clock text-lg mr-2"></i>
+                                                <i className="far fa-clock text-lg mr-2 md:hidden sm:hidden"></i>
                                                 <p>Reserve</p>
                                             </a>
                                         </div>

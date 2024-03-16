@@ -91,10 +91,10 @@ const Navbar = () => {
                         Drama
                     </a>
                     <a
-                        href={`/filter-movies?category=28`}
+                        href={`/filter-movies?category=27`}
                         className="text-gray-navbar pr-[37px] font-medium hover:text-green-hover hidden xxl:inline-block md:hidden sm:hidden"
                     >
-                        K-Drama
+                        Horror
                     </a>
                     <a
                         href={`/filter-movies?category=28`}
@@ -148,10 +148,10 @@ const Navbar = () => {
                                         Drama
                                     </a>
                                     <a
-                                        href={`/filter-movies?category=28`}
+                                        href={`/filter-movies?category=27`}
                                         className="hover:bg-zinc-800 w-full flex justify-center hover:text-green-hover block py-4 text-gray-navbar font-medium text-sm"
                                     >
-                                        K-Drama
+                                        Horror
                                     </a>
                                     <a
                                         href={`/filter-movies?category=28`}
@@ -277,10 +277,10 @@ const Navbar = () => {
                         Drama
                     </a>
                     <a
-                        href={`/filter-movies?category=28`}
+                        href={`/filter-movies?category=27`}
                         className="text-gray-navbar pr-[28px] font-medium hover:text-green-hover "
                     >
-                        K-Drama
+                        Horror
                     </a>
                     <a
                         href={`/filter-movies?category=28`}

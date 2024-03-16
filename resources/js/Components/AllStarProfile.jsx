@@ -131,11 +131,11 @@ const AllStarProfile = () => {
                                         }}
                                         onMouseLeave={handleMouseLeave}
                                     >
-                                        <div className="flex items-end z-10 h-40 w-40 sm:w-28 sm:h-28">
+                                        <div className="flex items-end z-10 h-40 w-40 sm:w-20 sm:h-20">
                                             <img
                                                 src={actor.profile_url}
                                                 alt={actor.name}
-                                                className={`md:mr-4 mb-3 rounded-full object-cover sm:h-[120px] h-[160px] w-[160px] ${
+                                                className={`md:mr-4 mb-3 rounded-full object-cover sm:h-[80px] h-[160px] w-[160px] ${
                                                     isProfileHover === actor.id
                                                         ? "border-2 border-[#00C936] "
                                                         : ""
