@@ -1,66 +1,62 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+[![Laravel](https://img.shields.io/badge/Laravel-FF2D20?style=for-the-badge&logo=laravel&logoColor=white)](https://laravel.com/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
+[![React.js](https://img.shields.io/badge/React.js-61DAFB?style=for-the-badge&logo=react&logoColor=white)](https://reactjs.org/)
+[![TMDb](https://img.shields.io/badge/TMDb-01D277?style=for-the-badge&logo=themoviedatabase&logoColor=white)](https://www.themoviedb.org/)
+[![Inertia.js](https://img.shields.io/badge/Inertia.js-E10098?style=for-the-badge&logo=inertia.js&logoColor=white)](https://inertiajs.com/)
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
 
-## About Laravel
+# Clone - iQIYI
+A web-based project that attempts to clone the interface of a streaming platform called iQIYI.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Installation
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+1. Clone the repository:
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+   ```bash
+   git clone https://github.com/AlvitoDian/ReactJS-Clone-iQIYI.git
+   cd laravel-clone-iqiyi
+   
+2. Install dependencies:
 
-## Learning Laravel
+   ```bash
+   npm install && composer update
+   cp .env.example .env
+   php artisan key:generate
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+3. Starting App :
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+   Open 2 terminals and run these commands separately each terminal
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+   Terminal 1
+   ```bash
+   php artisan serve
+   ```
+   
+   Terminal 2
+   ```bash
+   php artisan serve
+   ```
 
-## Laravel Sponsors
+   ## Screenshots
+   #### Hero Section
+   ![image](https://github.com/AlvitoDian/ReactJS-Clone-iQIYI/assets/132731944/f31e5946-4fb6-4deb-be21-7328a93bf0fa)
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+   #### Movie Card Section
+   #1
+   ![image](https://github.com/AlvitoDian/ReactJS-Clone-iQIYI/assets/132731944/3cb102d1-55c0-4fe7-8e73-d4573ad2afef)
+   #2
+   ![image](https://github.com/AlvitoDian/ReactJS-Clone-iQIYI/assets/132731944/5900a716-0450-46ed-9ff9-2561c5e39ec4)
+   #3
+   ![image](https://github.com/AlvitoDian/ReactJS-Clone-iQIYI/assets/132731944/58598d9d-a3d3-433c-95f8-d23a6483202c)
 
-### Premium Partners
+   #### Detail Movie Section
+   ![image](https://github.com/AlvitoDian/ReactJS-Clone-iQIYI/assets/132731944/e3537891-2020-4f23-bcce-a35191027215)
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+   #### Detail Actor Section
+   ![image](https://github.com/AlvitoDian/ReactJS-Clone-iQIYI/assets/132731944/24d0796a-d4f2-41fc-8f7f-713b9bb6062d)
 
-## Contributing
+   #### Filter Movie Section
+   ![image](https://github.com/AlvitoDian/ReactJS-Clone-iQIYI/assets/132731944/efd0c8dd-8056-4956-8711-49d4ae4c4f2f)
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+   ## Discalimer
+   This website was created solely for the purpose of learning and demonstrating web development skills. I do not intend to infringe copyright or harm any party. The contents, logos, and other content appearing on this site are the property of the original owner, iQiyi. I do not intend to claim ownership or copyright over such content. Again, this Website is created solely for the purpose of learning and demonstrating web development skills.
