@@ -256,7 +256,9 @@ const PopularMovieListCard = ({ category }) => {
                                                         <div className="border-l-[2px] border-[#808080] pr-[1px] -py-6 inline"></div>
 
                                                         <h1 className="mb-4 inline pl-1 pr-1">
-                                                            15+
+                                                            {movie.adult
+                                                                ? "18+"
+                                                                : "All"}
                                                         </h1>
 
                                                         <div className="border-l-[2px] border-[#808080] pr-[1px] -py-6 inline"></div>

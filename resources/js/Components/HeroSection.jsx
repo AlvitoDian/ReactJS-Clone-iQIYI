@@ -54,6 +54,7 @@ const HeroSection = ({ randomPopularMovies }) => {
                 overview={randomMovies[currentSlide]?.overview}
                 genreIds={randomMovies[currentSlide]?.genre_ids}
                 title={randomMovies[currentSlide].title || ""}
+                adult={randomMovies[currentSlide].adult || ""}
             />
             <div
                 className="flex transition-opacity duration-500 ease-in-out object-fit xl:h-screen xxl:h-screen"

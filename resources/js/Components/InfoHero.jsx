@@ -1,7 +1,7 @@
 import React from "react";
 import TextTruncate from "react-text-truncate";
 
-const InfoHero = ({ rate, year, overview, genreIds, title }) => {
+const InfoHero = ({ rate, year, overview, genreIds, title, adult }) => {
     function truncateWords(str, words) {
         return str.split(" ").slice(0, words).join(" ");
     }
@@ -66,7 +66,9 @@ const InfoHero = ({ rate, year, overview, genreIds, title }) => {
 
                 <div className="border-l-[2px] border-[#808080] pr-[3px] -py-6 inline"></div>
 
-                <span className="font-bold mb-4 inline pl-3 pr-3">13+</span>
+                <span className="font-bold mb-4 inline pl-3 pr-3">
+                    {adult ? "18+" : "All"}
+                </span>
 
                 <div className="border-l-[2px] border-[#808080] pr-[3px] -py-6 inline"></div>
 

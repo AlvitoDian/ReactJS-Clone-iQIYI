@@ -83,7 +83,7 @@ class HomeController extends Controller
         $responseAnimationMovies = $client->get(env('TMDB_BASE_URL') . 'discover/movie', [
             'query' => [
                 'api_key' => env('TMDB_API_KEY'),
-                'with_genres' => 16, 
+                'with_genres' => 16,
             ],
         ]);
 
@@ -116,7 +116,7 @@ class HomeController extends Controller
             'popularActors' => $popularActors,
             'upComingMovies' => $upComingMovies,
             'topMovies' => $topMovies,
-            'animationMovies' => $animationMovies
+            'animationMovies' => $animationMovies,
         ]);
     }
 
@@ -264,15 +264,24 @@ class HomeController extends Controller
         $search = $request->query('search');
 
         //? Get Filtered Movies
-        $responseFilter = $client->get(env('TMDB_BASE_URL') . 'search/movie', [
-            'query' => [
-                'api_key' => env('TMDB_API_KEY'),
-                'query' => $search,
-                'with_genres' => $category,
-                'page' => '1',
-                'sort_by' => 'popularity.desc',
-            ],
-        ]);
+        if ($search) {
+            $responseFilter = $client->get(env('TMDB_BASE_URL') . 'search/movie', [
+                'query' => [
+                    'api_key' => env('TMDB_API_KEY'),
+                    'query' => $search,
+                    'page' => '1',
+                    'sort_by' => 'popularity.desc',
+                ],
+            ]);
+        } elseif ($category) {
+            $responseFilter = $client->get(env('TMDB_BASE_URL') . 'discover/movie', [
+                'query' => [
+                    'api_key' => env('TMDB_API_KEY'),
+                    'with_genres' => $category,
+                    'page' => '1',
+                ],
+            ]);
+        }
 
         $filteredMovies = json_decode($responseFilter->getBody(), true)['results'];
 

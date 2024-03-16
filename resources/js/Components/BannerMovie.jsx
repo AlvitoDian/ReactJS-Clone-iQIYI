@@ -81,7 +81,7 @@ function BannerMovie() {
                             TOP 10
                         </span>
                         <span className=" font-bold mb-4 bg-[#6D6553] inline p-[5px] rounded-e-[3px]">
-                            Peringkat Popularitas Anime
+                            Peringkat Popularitas
                         </span>
                     </div>
                     {/* Ranking */}
@@ -100,7 +100,7 @@ function BannerMovie() {
                         <div className="border-l-[2px] border-[#808080] pr-[3px] -py-6 inline"></div>
 
                         <span className="font-normal mb-4 inline pl-3 pr-3">
-                            13+
+                            {movie.adult ? "18+" : "All"}
                         </span>
 
                         <div className="border-l-[2px] border-[#808080] pr-[3px] -py-6 inline"></div>
