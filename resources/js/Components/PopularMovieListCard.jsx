@@ -194,7 +194,15 @@ const PopularMovieListCard = ({ category }) => {
                                         </div>
                                         <div className="absolute text-gray-200 font-bold p-2 text-[14px] md:text-base sm:text-xs z-[50] flex items-center justify-center">
                                             <span className="ml-[3px]">
-                                                {truncateChars(movie.title, 11)}
+                                                {isMobile
+                                                    ? truncateChars(
+                                                          movie.title,
+                                                          6
+                                                      )
+                                                    : truncateChars(
+                                                          movie.title,
+                                                          21
+                                                      )}
                                             </span>
                                         </div>
                                         <div className="absolute text-gray-200 font-bold p-2 xxl:text-[36px] xl:text-[24px] lg:text-[24px] md:text-[20px] sm:text-[20px] z-[50] flex items-center justify-center pb-7">
