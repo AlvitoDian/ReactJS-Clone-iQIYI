@@ -14,9 +14,6 @@ function ActorInfo() {
     const [offsetLeft, setOffSetLeft] = useState(0);
     const [offsetWidth, setOffSetWidth] = useState(64);
 
-    console.log("offsetLeft:", offsetLeft);
-    console.log("offsetWidth:", offsetWidth);
-
     const handleTabClick = (tab) => {
         setActiveTab(tab);
         if (tab === "portofolio") {
@@ -85,7 +82,7 @@ function ActorInfo() {
                                         : "/images/filmnull.png"
                                 }
                                 alt={movie.title}
-                                className="md:mr-4 rounded-[1px] object-cover h-96"
+                                className="md:mr-4 rounded-md object-cover h-96 sm:h-[200px]"
                             />
                             <div className="absolute top-0 right-0 text-black font-bold text-[12px] font-bold bg-[#F2BF83] px-[6px] rounded-[1px] ">
                                 <span>VIP</span>

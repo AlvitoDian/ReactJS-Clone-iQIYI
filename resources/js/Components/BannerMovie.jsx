@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import MovieInfo from "./MovieInfo";
 import { SingleMovieContext } from "../Contexts/SingleMovieContext";
 
@@ -146,10 +146,10 @@ function BannerMovie() {
                     {/* Pemeran */}
                     <h4 className="text-[14px] text-white font-normal -mb-[6px]">
                         <span className="opacity-50">Pemeran: </span>
-                        {movie.cast.slice(0, 5).map((actor, index) => (
+                        {movie.cast.map((actor, index) => (
                             <span key={index}>
                                 {actor.name}
-                                {index !== 4 ? ", " : ""}
+                                {index !== 5 ? ", " : ""}
                             </span>
                         ))}
                     </h4>
@@ -217,10 +217,10 @@ function BannerMovie() {
                 {/* info Movie */}
             </div>
             <MovieInfo
-                actorCredits={movie.cast}
                 imdbId={movie.imdb_id}
                 posterUrl={posterUrl}
                 popularMovies={popularMovies}
+                movieId={movie.id}
             />
         </div>
     );

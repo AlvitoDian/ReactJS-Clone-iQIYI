@@ -10,7 +10,6 @@ const TopMovieListCard = ({ category }) => {
     const [prevArrowVisible, setPrevArrowVisible] = useState(false);
     const [isModalVisible, setModalVisible] = useState(false);
     const sliderRef = useRef(null);
-    console.log(popularMovies);
 
     const [moviesPopular, setMoviesPopular] = useState(popularMovies);
 
@@ -217,18 +216,12 @@ const TopMovieListCard = ({ category }) => {
                                                     />
                                                     {/* Tombol Play dan Bookmark */}
                                                     <div className="absolute flex p-1">
-                                                        <a
-                                                            href="/"
-                                                            className="bg-[#00C936] rounded-full w-[30px] h-[30px] flex justify-center items-center hover:bg-[#10e047] text-white mr-1"
-                                                        >
+                                                        <div className="bg-[#00C936] rounded-full w-[30px] h-[30px] flex justify-center items-center hover:bg-[#10e047] text-white mr-1">
                                                             <i className="fas fa-play text-xs"></i>
-                                                        </a>
-                                                        <a
-                                                            href="/"
-                                                            className="bg-[#D1D3D6] rounded-full w-[30px] h-[30px] flex justify-center items-center hover:bg-[#DEE0E3]"
-                                                        >
+                                                        </div>
+                                                        <div className="bg-[#D1D3D6] rounded-full w-[30px] h-[30px] flex justify-center items-center hover:bg-[#DEE0E3]">
                                                             <i className="fas fa-bookmark text-xs fa-inverse"></i>
-                                                        </a>
+                                                        </div>
                                                     </div>
                                                     {/* Tombol Play dan Bookmark */}
                                                 </div>

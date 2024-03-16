@@ -172,7 +172,7 @@ class HomeController extends Controller
         }
 
         //? Get Actors on Current Movie
-        $responseCredits = $client->get(env('TMDB_BASE_URL') . 'movie/' . $id . '/credits', [
+        /* $responseCredits = $client->get(env('TMDB_BASE_URL') . 'movie/' . $id . '/credits', [
             'query' => [
                 'api_key' => env('TMDB_API_KEY'),
             ],
@@ -202,6 +202,26 @@ class HomeController extends Controller
 
         $cast = array_slice($cast, 0, 15);
 
+        $movie['cast'] = $cast; */
+
+        $responseCredits = $client->get(env('TMDB_BASE_URL') . 'movie/' . $id . '/credits', [
+            'query' => [
+                'api_key' => env('TMDB_API_KEY'),
+            ],
+        ]);
+
+        $credits = json_decode($responseCredits->getBody(), true);
+
+        $cast = [];
+
+        foreach ($credits['cast'] as $actor) {
+            $actor['profile_url'] = $posterBaseUrl . $actor['profile_path'];
+
+            $cast[] = $actor;
+        }
+
+        $cast = array_slice($cast, 0, 6);
+
         $movie['cast'] = $cast;
 
         //? Render Page
@@ -210,6 +230,46 @@ class HomeController extends Controller
             'posterUrl' => env('TMDB_POSTER_URL'),
             'popularMovies' => $popularMovies,
         ]);
+    }
+
+    public function actorFromCurrentMovies($id, $startSlice, $lengthSlice)
+    {
+        $posterBaseUrl = env('TMDB_POSTER_URL');
+
+        $client = new Client();
+
+        //? Get Actor From Current Movies
+        $responseCredits = $client->get(env('TMDB_BASE_URL') . 'movie/' . $id . '/credits', [
+            'query' => [
+                'api_key' => env('TMDB_API_KEY'),
+            ],
+        ]);
+
+        $credits = json_decode($responseCredits->getBody(), true);
+
+        $casts = [];
+
+        foreach ($credits['cast'] as $actor) {
+            $actor['profile_url'] = $posterBaseUrl . $actor['profile_path'];
+
+            $responseActorCredits = $client->get(env('TMDB_BASE_URL') . 'person/' . $actor['id'] . '/movie_credits', [
+                'query' => [
+                    'api_key' => env('TMDB_API_KEY'),
+                ],
+            ]);
+
+            $actorCredits = json_decode($responseActorCredits->getBody(), true);
+
+            $recentMovies = array_slice($actorCredits['cast'], 0, 2);
+
+            $actor['recent_movies'] = $recentMovies;
+
+            $casts[] = $actor;
+        }
+
+        $casts = array_slice($casts, $startSlice, $lengthSlice);
+
+        return $casts;
     }
 
     public function singleActor($id)
